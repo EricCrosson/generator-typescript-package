@@ -155,7 +155,6 @@ module.exports = class extends Generator {
         })
     }
 
-    // FIXME: add badges to the readme
     createReadmeAbstract() {
         this.fs.copyTpl(
             this.templatePath('readme.md'),
@@ -163,6 +162,8 @@ module.exports = class extends Generator {
             {
                 pkg: input.pkg,
                 tagline: input.tagline,
+                git_group: input.git_group,
+                git_forge: input.git_forge,
                 npm_install_from: input.license === 'SEE LICENSE IN <LICENSE>'
                     ? `git+ssh://git@${input.git_forge}/${input.git_group}/${input.pkg}`
                     : input.pkg
