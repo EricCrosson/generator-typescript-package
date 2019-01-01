@@ -1,0 +1,13 @@
+---
+image: node:11.6-alpine
+
+stages:
+  - test
+
+before_script:
+  - npm install
+
+test:
+  stage: test
+  script:
+    - npm test

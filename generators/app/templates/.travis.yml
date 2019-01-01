@@ -1,0 +1,28 @@
+---
+language: node_js
+
+node_js:
+  - 'node'
+  - '11'
+  - '10'
+  - '6'
+
+sudo: false
+
+# env:
+#   - workerCount=3 timeout=60000
+
+matrix:
+  fast_finish: true
+
+install:
+  - npm uninstall typescript --no-save
+  - npm uninstall tslint --no-save
+  - npm install
+
+cache:
+  directories:
+    - node_modules
+
+git:
+  depth: 1
