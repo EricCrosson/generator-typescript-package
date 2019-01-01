@@ -15,7 +15,7 @@ import { TODO } from '<%= pkg %>'
 // TODO: describe usage
 ```
 
-## RELATED
+## Related
 
 TODO
 
