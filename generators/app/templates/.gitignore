@@ -4,3 +4,4 @@ flycheck_*
 \#*
 *~
 *.*~
+.yo-rc.json
