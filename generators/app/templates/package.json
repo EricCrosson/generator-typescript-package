@@ -24,9 +24,9 @@
     "author": "<%= author %> <<%= email %>> (https://<%= git_forge %>/<%= git_username %>)",
     "license": "<%= license %>",
     "bugs": {
-        "url": "<%= git_repository %>/<%= pkg %>/issues"
+        "url": "<%= git_repository %>/issues"
     },
-    "homepage": "<%= git_repository %>/<%= pkg %>",
+    "homepage": "<%= git_repository %>",
     "dependencies": {
         "@types/node": "^10.12.18",
         "typescript": "^3.2.2"
