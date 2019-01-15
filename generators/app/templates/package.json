@@ -7,7 +7,8 @@
     "scripts": {
         "build": "tsc",
         "test": "ava",
-        "dev": "concurrently \"tsc -w\" \"nodemon -e 'ts' -x 'npm test || true'\"",
+        "dev": "concurrently \"tsc -w\" \"nodemon -e 'ts json' -x 'npm test || true'\"",
+        "nodemon:test": "nodemon -e 'ts json' -x 'npm test || true'",
         "typedoc": "typedoc"
     },
     "husky": {
