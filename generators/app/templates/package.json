@@ -5,7 +5,7 @@
     "main": "dist/<%= pkg %>.js",
     "types": "dist/<%= pkg %>.d.ts",
     "scripts": {
-        "build": "tsc",
+        "install": "tsc",
         "test": "ava",
         "test:watch": "ava --watch",
         "dev": "concurrently \"tsc -w\" \"nodemon -e 'ts json' -x 'npm test || true'\"",

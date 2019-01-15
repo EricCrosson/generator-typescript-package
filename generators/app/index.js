@@ -145,10 +145,7 @@ module.exports = class extends Generator {
         if (input.license === 'SEE LICENSE IN <LICENSE>') {
             let pkgJsonExtension =
             this.fs.extendJSON(this.destinationPath('package.json'), {
-                private: true,
-                scripts: {
-                    install: "npm run build"
-                }
+                private: true
             })
         }
         this.fs.extendJSON(this.destinationPath('package.json'), {
