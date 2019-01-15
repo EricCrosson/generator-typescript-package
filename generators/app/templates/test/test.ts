@@ -7,7 +7,7 @@ import test from 'ava'
 import { <%= camelCasePkg %> } from '../src/<%= pkg %>'
 
 test('test ava configuration', t => {
-	t.pass()
+    t.pass()
 })
 
 // TODO: write tests
