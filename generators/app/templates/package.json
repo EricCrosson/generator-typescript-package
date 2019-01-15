@@ -7,8 +7,8 @@
     "scripts": {
         "build": "tsc",
         "test": "ava",
+        "test:watch": "ava --watch",
         "dev": "concurrently \"tsc -w\" \"nodemon -e 'ts json' -x 'npm test || true'\"",
-        "nodemon:test": "nodemon -e 'ts json' -x 'npm test || true'",
         "typedoc": "typedoc"
     },
     "husky": {
