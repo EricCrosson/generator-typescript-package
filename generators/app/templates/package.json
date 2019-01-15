@@ -22,7 +22,7 @@
     "keywords": [
     ],
     "author": "<%= author %> <<%= email %>> (https://<%= git_forge %>/<%= git_username %>)",
-    "license": "<%= license %>",
+    "license": "<%- license %>",
     "bugs": {
         "url": "<%= git_repository %>/issues"
     },
