@@ -194,7 +194,8 @@ module.exports = class extends Generator {
             this.templatePath('test/test.ts'),
             this.destinationPath(`test/test-${input.pkg}.ts`),
             {
-                pkg: camelCase(input.pkg)
+                camelCasePkg: camelCase(input.pkg),
+                pkg: input.pkg
             })
     }
 
