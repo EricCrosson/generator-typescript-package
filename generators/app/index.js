@@ -3,6 +3,7 @@ const os = require('os')
 const path = require('path')
 const parse = require('parse-git-config')
 const shelljs = require('shelljs')
+const camelCase = require('camelcase')
 
 const now = new Date()
 const date_year = now.getFullYear()
@@ -184,7 +185,7 @@ module.exports = class extends Generator {
                 date_year: date_year,
                 copyright_holder: input.copyright_holder,
                 tagline: input.tagline,
-                pkg: input.pkg
+                pkg: camelCase(input.pkg)
             })
     }
 
@@ -193,7 +194,7 @@ module.exports = class extends Generator {
             this.templatePath('test/test.ts'),
             this.destinationPath(`test/test-${input.pkg}.ts`),
             {
-                pkg: input.pkg
+                pkg: camelCase(input.pkg)
             })
     }
 
