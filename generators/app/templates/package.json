@@ -9,7 +9,8 @@
         "test": "ava",
         "test:watch": "ava --watch",
         "dev": "concurrently \"tsc -w\" \"nodemon -e 'ts json' -x 'npm test || true'\"",
-        "typedoc": "typedoc"
+        "watch:test": "nodemon -e 'ts json' -x 'npm test || true'",
+        "typedoc": "typedoc && rm README.md && cp ./doc/typedoc/README.md ."
     },
     "husky": {
         "hooks": {
