@@ -7,6 +7,6 @@
 /**
  * TODO: document
  */
-export function <%= pkg %>() {
+export function <%= camelCasePkg %>() {
     // TODO: implement
 }

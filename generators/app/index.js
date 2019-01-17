@@ -182,7 +182,8 @@ module.exports = class extends Generator {
                 date_year: date_year,
                 copyright_holder: input.copyright_holder,
                 tagline: input.tagline,
-                pkg: camelCase(input.pkg)
+                pkg: input.pkg,
+                camelCasePkg: camelCase(input.pkg)
             })
     }
 
