@@ -10,7 +10,7 @@
         "test:watch": "npm test -- --watch",
         "dev": "concurrently \"tsc -w\" \"nodemon -e 'ts json' -x 'npm test || true'\"",
         "watch:test": "nodemon -e 'ts json' -x 'npm test || true'",
-        "typedoc": "typedoc && rm README.md && cp ./doc/typedoc/README.md ."
+        "typedoc": "typedoc && rm -f README.md && cp ./doc/typedoc/README.md ."
     },
     "husky": {
         "hooks": {
