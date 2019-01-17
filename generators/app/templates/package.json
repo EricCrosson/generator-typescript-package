@@ -14,7 +14,7 @@
     },
     "husky": {
         "hooks": {
-            "pre-push": "npm run typedoc && git add doc && (git commit -m 'Update documentation' || true)"
+            "pre-push": "npm run typedoc && git add doc README.md && (git commit -m 'Update documentation' || true)"
         }
     },
     "repository": {
