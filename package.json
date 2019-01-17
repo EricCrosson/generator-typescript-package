@@ -4,7 +4,8 @@
     "description": "Yet another Yeoman generator for typescript packages",
     "main": "app/index.js",
     "scripts": {
-        "test": "mocha"
+        "test": "mocha",
+        "push-and-publish": "git push origin master && git push --tags && npm publish"
     },
     "files": [
         "generators"
