@@ -69,6 +69,7 @@ module.exports = class extends Generator {
             default: git_email
         }]).then(answers => {
             input = answers
+            input.git_repository = answers.git_repository.replace(/.git$/, '')
             input.keywords = answers.keywords.split(/\s+/)
             input.git_forge = answers.git_repository.match(/.*(@|:\/\/)(.*?)(:|\/).*?\/.*?$/)[2]
             input.git_group = answers.git_repository.match(/.*[@/].*[:/](.*?)\/.*?$/)[1]
