@@ -2,7 +2,6 @@ const Generator = require('yeoman-generator')
 const os = require('os')
 const path = require('path')
 const parse = require('parse-git-config')
-const shelljs = require('shelljs')
 const camelCase = require('camelcase')
 
 const now = new Date()
@@ -111,6 +110,13 @@ module.exports = class extends Generator {
             {})
     }
 
+    createNodemonJson() {
+        this.fs.copyTpl(
+            this.templatePath('nodemon.json'),
+            this.destinationPath('nodemon.json'),
+            {})
+    }
+
     createGitForgeCIFile() {
         if (input.git_repository.includes('github.com')) {
             this.fs.copyTpl(
@@ -167,12 +173,6 @@ module.exports = class extends Generator {
                     ? `git+ssh://git@${input.git_forge}/${input.git_group}/${input.pkg}`
                     : input.pkg
             })
-    }
-
-    createAggregatedReadmeHardlink() {
-        shelljs.mkdir('-p', 'doc/typedoc')
-        shelljs.touch('doc/typedoc/README.md')
-        shelljs.exec('ln doc/typedoc/README.md')
     }
 
     createSrcTypescript() {

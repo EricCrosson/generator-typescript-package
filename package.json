@@ -28,7 +28,6 @@
     "dependencies": {
         "camelcase": "^5.0.0",
         "parse-git-config": "^3.0.0",
-        "shelljs": "^0.8.3",
         "yeoman-generator": "^3.2.0"
     }
 }
