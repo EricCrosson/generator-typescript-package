@@ -6,8 +6,8 @@
     "types": "dist/<%= pkg %>.d.ts",
     "scripts": {
         "install": "tsc",
-        "test": "ava",
-        "test:watch": "npm test -- --watch",
+        "test": "nyc ava --tap | tap-nyc",
+        "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
         "dev": "concurrently \"tsc -w\" \"nodemon -e 'ts json' -x 'npm test || true'\"",
         "watch:test": "nodemon -e 'ts json' -x 'npm test || true'",
         "typedoc": "typedoc",
@@ -37,16 +37,37 @@
     },
     "devDependencies": {
         "ava": "^1.0.0",
+        "codecov": "^3.1.0",
         "concurrently": "^4.1.0",
         "husky": "^1.3.1",
+        "nyc": "^13.1.0",
+        "tap-nyc": "^1.0.3",
         "ts-node": "^7.0.1",
         "typedoc": "^0.13.0",
         "typedoc-plugin-markdown": "^1.1.20"
     },
     "ava": {
         "compileEnhancements": false,
+        "files": [
+            "!dist/**/*.d.ts",
+            "test/**/*.ts"
+        ],
         "extensions": [
             "ts"
+        ],
+        "require": [
+            "ts-node/register"
+        ]
+    },
+    "nyc": {
+        "include": [
+            "src/*.ts"
+        ],
+        "exclude": [
+            "typings"
+        ],
+        "extension": [
+            ".ts"
         ],
         "require": [
             "ts-node/register"

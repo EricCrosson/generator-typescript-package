@@ -165,6 +165,7 @@ module.exports = class extends Generator {
             this.templatePath('readme.md'),
             this.destinationPath('readme.md'),
             {
+                camelCasePkg: camelCase(input.pkg),
                 pkg: input.pkg,
                 tagline: input.tagline,
                 git_group: input.git_group,

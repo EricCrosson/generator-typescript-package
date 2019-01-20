@@ -26,3 +26,5 @@ cache:
 
 git:
   depth: 1
+
+after_success: npm run coverage
