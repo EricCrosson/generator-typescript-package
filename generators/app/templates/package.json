@@ -11,7 +11,8 @@
         "dev": "concurrently \"tsc -w\" \"nodemon -e 'ts json' -x 'npm test || true'\"",
         "watch:test": "nodemon -e 'ts json' -x 'npm test || true'",
         "typedoc": "typedoc",
-        "push-and-publish": "git push origin master && git push origin --tags && npm publish"
+        "push-with-tags": "git push origin master && git push origin --tags",
+        "push-and-publish": "npm run push-with-tags && npm publish"
     },
     "husky": {
         "hooks": {
