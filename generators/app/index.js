@@ -144,9 +144,9 @@ module.exports = class extends Generator {
     extendPackageJson() {
         if (input.license === 'SEE LICENSE IN <LICENSE>') {
             let pkgJsonExtension =
-            this.fs.extendJSON(this.destinationPath('package.json'), {
-                private: true
-            })
+                this.fs.extendJSON(this.destinationPath('package.json'), {
+                    private: true
+                })
         }
         this.fs.extendJSON(this.destinationPath('package.json'), {
             keywords: input.keywords
@@ -156,7 +156,7 @@ module.exports = class extends Generator {
     createReadmeAbstract() {
         this.fs.copyTpl(
             this.templatePath('readme.md'),
-            this.destinationPath('doc/readme.md'),
+            this.destinationPath('readme.md'),
             {
                 pkg: input.pkg,
                 tagline: input.tagline,
@@ -198,10 +198,6 @@ module.exports = class extends Generator {
     }
 
     install() {
-        if (shelljs.which('yarn')) {
-            this.yarnInstall()
-        } else {
-            this.npmInstall()
-        }
+        this.npmInstall()
     }
 }

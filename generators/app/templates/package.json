@@ -10,12 +10,12 @@
         "test:watch": "npm test -- --watch",
         "dev": "concurrently \"tsc -w\" \"nodemon -e 'ts json' -x 'npm test || true'\"",
         "watch:test": "nodemon -e 'ts json' -x 'npm test || true'",
-        "typedoc": "typedoc && cp ./doc/typedoc/README.md .",
+        "typedoc": "typedoc",
         "push-and-publish": "git push origin master && git push origin --tags && npm publish"
     },
     "husky": {
         "hooks": {
-            "pre-push": "npm run typedoc && git add doc README.md && (git commit -m 'Update documentation' || true)"
+            "pre-push": "npm run typedoc && git add doc && (git commit -m 'Update documentation' || true)"
         }
     },
     "repository": {
