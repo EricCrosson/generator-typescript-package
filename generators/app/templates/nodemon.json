@@ -9,7 +9,6 @@
         "ts": "ts-node"
     },
     "watch": [
-        "test/",
         "test/"
     ],
     "env": {
