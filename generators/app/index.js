@@ -110,12 +110,12 @@ module.exports = class extends Generator {
             {})
     }
 
-    createNodemonJson() {
-        this.fs.copyTpl(
-            this.templatePath('nodemon.json'),
-            this.destinationPath('nodemon.json'),
-            {})
-    }
+    // createNodemonJson() {
+    //     this.fs.copyTpl(
+    //         this.templatePath('nodemon.json'),
+    //         this.destinationPath('nodemon.json'),
+    //         {})
+    // }
 
     createGitForgeCIFile() {
         if (input.git_repository.includes('github.com')) {
