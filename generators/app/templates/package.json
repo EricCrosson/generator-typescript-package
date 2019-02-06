@@ -6,7 +6,7 @@
     "types": "dist/<%= pkg %>.d.ts",
     "scripts": {
         "install": "tsc",
-        "ava": "ava",
+        "ava": "ava -s -v",
         "watch:ava": "nodemon -e 'ts json' -x 'npm run ava || true'",
         "test": "nyc ava --tap | tap-nyc",
         "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
