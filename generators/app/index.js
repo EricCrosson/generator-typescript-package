@@ -20,6 +20,12 @@ module.exports = class extends Generator {
     prompting() {
         return this.prompt([{
             type: 'input',
+            name: 'scope',
+            message: 'npm scope',
+            default: '',
+            store: true
+        }, {
+            type: 'input',
             name: 'pkg',
             message: 'Your package name (no word-breaks)',
             default: path.basename(this.appname.replace(/ /g, '-'))  // defaults to current folder name
@@ -68,6 +74,10 @@ module.exports = class extends Generator {
             default: git_email
         }]).then(answers => {
             input = answers
+            // RESUME
+            input.scopedPkg = answers.scope.length > 0
+                ? `@${answers.scope}/${answers.pkg}`.replace('@@', '@')
+                : answers.pkg
             input.git_repository = answers.git_repository.replace(/.git$/, '')
             input.keywords = answers.keywords.split(/\s+/)
             input.git_forge = answers.git_repository.match(/.*(@|:\/\/)(.*?)(:|\/).*?\/.*?$/)[2]
@@ -137,6 +147,7 @@ module.exports = class extends Generator {
             this.destinationPath('package.json'),
             {
                 pkg: input.pkg,
+                scopedPkg: input.scopedPkg,
                 version: input.version,
                 tagline: input.tagline,
                 git_repository: input.git_repository,
@@ -154,6 +165,12 @@ module.exports = class extends Generator {
                 this.fs.extendJSON(this.destinationPath('package.json'), {
                     private: true
                 })
+        } else if (input.scope.length > 0) {
+            this.fs.extendJSON(this.destinationPath('package.json'), {
+                publishConfig: {
+                    access: 'public'
+                }
+            })
         }
         this.fs.extendJSON(this.destinationPath('package.json'), {
             keywords: input.keywords
@@ -167,12 +184,13 @@ module.exports = class extends Generator {
             {
                 camelCasePkg: camelCase(input.pkg),
                 pkg: input.pkg,
+                scopedPkg: input.scopedPkg,
                 tagline: input.tagline,
                 git_group: input.git_group,
                 git_forge: input.git_forge,
                 npm_install_from: input.license === 'SEE LICENSE IN <LICENSE>'
                     ? `git+ssh://git@${input.git_forge}/${input.git_group}/${input.pkg}`
-                    : input.pkg
+                    : input.scopedPkg
             })
     }
 

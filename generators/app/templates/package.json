@@ -1,5 +1,5 @@
 {
-    "name": "<%= pkg %>",
+    "name": "<%= scopedPkg %>",
     "version": "<%= version %>",
     "description": "<%= tagline %>",
     "main": "dist/<%= pkg %>.js",
