@@ -1,6 +1,6 @@
 {
     "name": "generator-typescript-package",
-    "version": "1.0.20",
+    "version": "1.0.21",
     "description": "Yet another Yeoman generator for typescript packages",
     "main": "app/index.js",
     "scripts": {
