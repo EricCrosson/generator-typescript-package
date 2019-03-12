@@ -4,13 +4,13 @@
 
 ## Install
 
-``` shell
+```shell
 npm install <%= npm_install_from %>
 ```
 
 ## Use
 
-``` typescript
+```typescript
 import <%= camelCasePkg %> from '<%= scopedPkg %>'
 // TODO: describe usage
 ```
