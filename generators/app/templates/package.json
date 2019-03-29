@@ -5,7 +5,9 @@
     "main": "dist/<%= pkg %>.js",
     "types": "dist/<%= pkg %>.d.ts",
     "scripts": {
-        "install": "tsc",
+        "prepublishOnly": "npm run compile",
+        "compile": "npm run clean && tsc",
+        "clean": "rm -rf dist",
         "ava": "ava -s -v",
         "ava:fail-fast": "ava -s -v --fail-fast",
         "watch:ava": "nodemon -e 'ts json' -x 'npm run ava || true'",
@@ -36,10 +38,9 @@
     },
     "homepage": "<%= git_repository %>",
     "dependencies": {
-        "@types/node": "^10.12.18",
-        "typescript": "^3.2.2"
     },
     "devDependencies": {
+        "@types/node": "^10.12.18",
         "ava": "^1.0.0",
         "codecov": "^3.1.0",
         "husky": "^1.3.1",
@@ -47,8 +48,12 @@
         "tap-nyc": "^1.0.3",
         "ts-node": "^7.0.1",
         "typedoc": "^0.13.0",
-        "typedoc-plugin-markdown": "^1.1.20"
+        "typedoc-plugin-markdown": "^1.1.20",
+        "typescript": "^3.2.2"
     },
+    "files": [
+        "dist/"
+    ],
     "ava": {
         "compileEnhancements": false,
         "files": [
