@@ -1,7 +1,7 @@
 {
     "name": "<%= scopedPkg %>",
     "version": "<%= version %>",
-    "description": "<%= tagline %>",
+    "description": "<%- tagline %>",
     "main": "dist/<%= pkg %>.js",
     "types": "dist/<%= pkg %>.d.ts",
     "scripts": {
