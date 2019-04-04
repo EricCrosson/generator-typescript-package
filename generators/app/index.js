@@ -143,7 +143,7 @@ module.exports = class extends Generator {
 
     createPackageJson() {
         this.fs.copyTpl(
-            this.templatePath('package.json'),
+            this.templatePath('package_json'),
             this.destinationPath('package.json'),
             {
                 pkg: input.pkg,
