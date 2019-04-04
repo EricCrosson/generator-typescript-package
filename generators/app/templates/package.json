@@ -58,7 +58,7 @@
         "compileEnhancements": false,
         "files": [
             "!dist/**/*.d.ts",
-            "test/**/*.ts"
+            "test/**/test-*.ts"
         ],
         "extensions": [
             "ts"
