@@ -12,10 +12,13 @@ const git_username = (git_config.github || {}).user || os.userInfo().username
 const git_full_name = git_config.user.name
 const git_email = git_config.user.email
 
-
 var input
 
 module.exports = class extends Generator {
+    constructor(args, opts) {
+        super(args, opts)
+        this.option("lerna")
+    }
 
     prompting() {
         return this.prompt([{
@@ -74,7 +77,6 @@ module.exports = class extends Generator {
             default: git_email
         }]).then(answers => {
             input = answers
-            // RESUME
             input.scopedPkg = answers.scope.length > 0
                 ? `@${answers.scope}/${answers.pkg}`.replace('@@', '@')
                 : answers.pkg
@@ -95,10 +97,12 @@ module.exports = class extends Generator {
     }
 
     createGitIgnore() {
-        this.fs.copyTpl(
-            this.templatePath('dot_gitignore'),
-            this.destinationPath('.gitignore'),
-            {})
+        if (!this.options.lerna) {
+            this.fs.copyTpl(
+                this.templatePath('dot_gitignore'),
+                this.destinationPath('.gitignore'),
+                {})
+        }
     }
 
     createLicense() {
@@ -128,16 +132,18 @@ module.exports = class extends Generator {
     // }
 
     createGitForgeCIFile() {
-        if (input.git_repository.includes('github.com')) {
-            this.fs.copyTpl(
-                this.templatePath('.travis.yml'),
-                this.destinationPath('.travis.yml'),
-                {})
-        } else if (input.git_repository.includes('gitlab.com')) {
-            this.fs.copyTpl(
-                this.templatePath('.gitlab-ci.yml'),
-                this.destinationPath('.gitlab-ci.yml'),
-                {})
+        if (!this.options.lerna) {
+            if (input.git_repository.includes('github.com')) {
+                this.fs.copyTpl(
+                    this.templatePath('.travis.yml'),
+                    this.destinationPath('.travis.yml'),
+                    {})
+            } else if (input.git_repository.includes('gitlab.com')) {
+                this.fs.copyTpl(
+                    this.templatePath('.gitlab-ci.yml'),
+                    this.destinationPath('.gitlab-ci.yml'),
+                    {})
+            }
         }
     }
 
@@ -169,6 +175,13 @@ module.exports = class extends Generator {
             this.fs.extendJSON(this.destinationPath('package.json'), {
                 publishConfig: {
                     access: 'public'
+                }
+            })
+        }
+        if (this.options.lerna) {
+            this.fs.extendJSON(this.destinationPath('package.json'), {
+                scripts: {
+                    install: 'tsc'
                 }
             })
         }
