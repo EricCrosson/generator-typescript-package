@@ -2,8 +2,8 @@
     "name": "<%= scopedPkg %>",
     "version": "<%= version %>",
     "description": "<%- tagline %>",
-    "main": "dist/<%= pkg %>.js",
-    "types": "dist/<%= pkg %>.d.ts",
+    "main": "dist/src/<%= pkg %>.js",
+    "types": "dist/src/<%= pkg %>.d.ts",
     "scripts": {
         "prepublishOnly": "npm run compile",
         "compile": "npm run clean && tsc",
@@ -52,7 +52,7 @@
         "typescript": "^3.4.1"
     },
     "files": [
-        "dist/"
+        "dist/src/"
     ],
     "ava": {
         "compileEnhancements": false,
