@@ -11,7 +11,7 @@ npm install <%= npm_install_from %>
 ## Use
 
 ```typescript
-import { <%= camelCasePkg %> } from '<%= scopedPkg %>'
+import <%= importStatement %> from '<%= scopedPkg %>'
 // TODO: describe usage
 ```
 

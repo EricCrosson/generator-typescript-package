@@ -1,12 +1,12 @@
 /**
  * <%= pkg %>
- * <%= tagline %>
+ * <%- tagline %>
  */
 
 
 /**
  * TODO: document
  */
-export function <%= camelCasePkg %>() {
+<%= exportStatement %> function <%= camelCasePkg %>() {
     // TODO: implement
 }

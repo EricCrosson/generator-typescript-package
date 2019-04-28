@@ -1,7 +1,7 @@
 {
     "name": "generator-typescript-package",
     "version": "1.1.7",
-    "description": "Yet another Yeoman generator for typescript packages",
+    "description": "Yet another Yeoman generator for TypeScript packages",
     "main": "app/index.js",
     "scripts": {
         "test": "mocha",

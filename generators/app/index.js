@@ -12,12 +12,57 @@ const git_username = (git_config.github || {}).user || os.userInfo().username
 const git_full_name = git_config.user.name
 const git_email = git_config.user.email
 
+const supportedLicenses = [
+    "ISC",
+    "SEE LICENSE IN <LICENSE>",
+    "Apache-2.0",
+    "BSD-2-Clause",
+    "BSD-3-Clause",
+    "BSD-4-Clause",
+    "GPL-2.0-only",
+    "GPL-2.0-or-later",
+    "GPL-3.0-only",
+    "GPL-3.0-or-later"
+]
+const proprietaryLicense = 'SEE LICENSE IN <LICENSE>'
+
 var input
 
 module.exports = class extends Generator {
     constructor(args, opts) {
         super(args, opts)
-        this.option("lerna")
+        this.option('lerna')
+        this.option('default')
+
+        this.generate = function (template, destination = template) {
+            this.fs.copyTpl(
+                this.templatePath(template),
+                this.destinationPath(destination),
+                {
+                    date_year: date_year,
+                    exportStatement: this.options.default ? 'export default' : 'export',
+                    importStatement: this.options.default ? camelCase(input.pkg) : `{ ${camelCase(input.pkg)} }`,
+
+                    author: input.author,
+                    camelCasePkg: camelCase(input.pkg),
+                    copyright_holder: input.copyright_holder,
+                    email: input.email,
+                    git_forge: input.git_forge,
+                    git_group: input.git_group,
+                    git_repository: input.git_repository,
+                    git_username: input.git_username,
+                    license: input.license,
+                    pkg: input.pkg,
+                    scopedPkg: input.scopedPkg,
+                    tagline: input.tagline,
+                    version: input.version,
+
+                    npm_install_from: input.license === 'SEE LICENSE IN <LICENSE>'
+                        ? `git+ssh://git@${input.git_forge}/${input.git_group}/${input.pkg}`
+                        : input.scopedPkg
+                }
+            )
+        }
     }
 
     prompting() {
@@ -45,10 +90,7 @@ module.exports = class extends Generator {
             type: 'list',
             name: 'license',
             message: 'License',
-            choices: ["ISC", "SEE LICENSE IN <LICENSE>", "Apache-2.0",
-                      "BSD-2-Clause", "BSD-3-Clause", "BSD-4-Clause",
-                      "GPL-2.0-only", "GPL-2.0-or-later",
-                      "GPL-3.0-only", "GPL-3.0-or-later"]
+            choices: supportedLicenses
         }, {
             type: 'input',
             name: 'copyright_holder',
@@ -88,89 +130,52 @@ module.exports = class extends Generator {
         })
     }
 
+    installSimpleTemplates() {
+        this.generate('readme.md')
+        this.generate('package_json', 'package.json')
+        this.generate('src/src.ts', `src/${input.pkg}.ts`)
+        this.generate('test/test.ts', `test/test-${input.pkg}.ts`)
 
-    createTypedocJs() {
-        this.fs.copyTpl(
-            this.templatePath('typedoc.js'),
-            this.destinationPath('typedoc.js'),
-            { pkg: input.pkg })
-    }
+        // TODO: this probably changes with lerna
+        this.generate('typedoc.js')
 
-    createGitIgnore() {
-        if (!this.options.lerna) {
-            this.fs.copyTpl(
-                this.templatePath('dot_gitignore'),
-                this.destinationPath('.gitignore'),
-                {})
+        if (this.options.lerna) {
+            this.generate('lerna/tsconfig.json', 'tsconfig.json')
+        } else {
+            this.generate('tsconfig.json')
+            this.generate('dot_gitignore', '.gitignore')
+            this._customizeCompileForLernaInPackageJson()
+            this._createGitForgeCiFile()
         }
     }
 
-    createLicense() {
-        if (input.license === "SEE LICENSE IN <LICENSE>") {
-            this.fs.copyTpl(
-                this.templatePath('LICENSE'),
-                this.destinationPath('LICENSE'),
-                {
-                    date_year: date_year,
-                    copyright_holder: input.copyright_holder
-                })
+    _createGitForgeCiFile() {
+        if (input.git_repository.includes('github.com')) {
+            this.generate('.travis.yml')
+        } else if (input.git_repository.includes('gitlab.com')) {
+            this.generate('.gitlab-ci.yml')
         }
     }
 
-    createTsconfigJson() {
-        this.fs.copyTpl(
-            this.templatePath('tsconfig.json'),
-            this.destinationPath('tsconfig.json'),
-            {})
-    }
-
-    // createNodemonJson() {
-    //     this.fs.copyTpl(
-    //         this.templatePath('nodemon.json'),
-    //         this.destinationPath('nodemon.json'),
-    //         {})
-    // }
-
-    createGitForgeCIFile() {
-        if (!this.options.lerna) {
-            if (input.git_repository.includes('github.com')) {
-                this.fs.copyTpl(
-                    this.templatePath('.travis.yml'),
-                    this.destinationPath('.travis.yml'),
-                    {})
-            } else if (input.git_repository.includes('gitlab.com')) {
-                this.fs.copyTpl(
-                    this.templatePath('.gitlab-ci.yml'),
-                    this.destinationPath('.gitlab-ci.yml'),
-                    {})
+    _customizeCompileForLernaInPackageJson() {
+        this.fs.extendJSON(this.destinationPath('package.json'), {
+            scripts: {
+                compile: 'npm run clean && tsc -b .',
             }
-        }
+        })
     }
 
-    createPackageJson() {
-        this.fs.copyTpl(
-            this.templatePath('package_json'),
-            this.destinationPath('package.json'),
-            {
-                pkg: input.pkg,
-                scopedPkg: input.scopedPkg,
-                version: input.version,
-                tagline: input.tagline,
-                git_repository: input.git_repository,
-                email: input.email,
-                author: input.author,
-                git_username: input.git_username,
-                git_forge: input.git_forge,
-                license: input.license
+    addKeywordsToPackageJson() {
+        this.fs.extendJSON(this.destinationPath('package.json'), {
+            keywords: input.keywords.filter(keyword => keyword !== '')
+        })
+    }
+
+    addPublishConfigToPackageJson() {
+        if (input.license === proprietaryLicense) {
+            this.fs.extendJSON(this.destinationPath('package.json'), {
+                private: true
             })
-    }
-
-    extendPackageJson() {
-        if (input.license === 'SEE LICENSE IN <LICENSE>') {
-            let pkgJsonExtension =
-                this.fs.extendJSON(this.destinationPath('package.json'), {
-                    private: true
-                })
         } else if (input.scope.length > 0) {
             this.fs.extendJSON(this.destinationPath('package.json'), {
                 publishConfig: {
@@ -178,56 +183,12 @@ module.exports = class extends Generator {
                 }
             })
         }
-        if (this.options.lerna) {
-            this.fs.extendJSON(this.destinationPath('package.json'), {
-                scripts: {
-                    install: 'tsc'
-                }
-            })
+    }
+
+    createLicense() {
+        if (input.license === proprietaryLicense) {
+            this.generate('LICENSE')
         }
-        this.fs.extendJSON(this.destinationPath('package.json'), {
-            keywords: input.keywords
-        })
-    }
-
-    createReadmeAbstract() {
-        this.fs.copyTpl(
-            this.templatePath('readme.md'),
-            this.destinationPath('readme.md'),
-            {
-                camelCasePkg: camelCase(input.pkg),
-                pkg: input.pkg,
-                scopedPkg: input.scopedPkg,
-                tagline: input.tagline,
-                git_group: input.git_group,
-                git_forge: input.git_forge,
-                npm_install_from: input.license === 'SEE LICENSE IN <LICENSE>'
-                    ? `git+ssh://git@${input.git_forge}/${input.git_group}/${input.pkg}`
-                    : input.scopedPkg
-            })
-    }
-
-    createSrcTypescript() {
-        this.fs.copyTpl(
-            this.templatePath('src/src.ts'),
-            this.destinationPath(`src/${input.pkg}.ts`),
-            {
-                date_year: date_year,
-                copyright_holder: input.copyright_holder,
-                tagline: input.tagline,
-                pkg: input.pkg,
-                camelCasePkg: camelCase(input.pkg)
-            })
-    }
-
-    createTest() {
-        this.fs.copyTpl(
-            this.templatePath('test/test.ts'),
-            this.destinationPath(`test/test-${input.pkg}.ts`),
-            {
-                camelCasePkg: camelCase(input.pkg),
-                pkg: input.pkg
-            })
     }
 
     install() {
