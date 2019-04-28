@@ -142,10 +142,10 @@ module.exports = class extends Generator {
 
         if (this.options.lerna) {
             this.generate('lerna/tsconfig.json', 'tsconfig.json')
+            this._customizeCompileForLernaInPackageJson()
         } else {
             this.generate('tsconfig.json')
             this.generate('dot_gitignore', '.gitignore')
-            this._customizeCompileForLernaInPackageJson()
             this._createGitForgeCiFile()
         }
     }
