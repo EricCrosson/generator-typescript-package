@@ -13,6 +13,7 @@
         "watch:ava": "nodemon -e 'ts json' -x 'npm run ava || true'",
         "watch:ava:fail-fast": "nodemon -e 'ts json' -x 'npm run ava:fail-fast || true'",
         "lint": "eslint --ext ts .",
+        "lint:fix": "eslint --ext ts --fix .",
         "watch:lint": "nodemon -e 'ts js json' -x 'npm run lint || true'",
         "test": "npm run lint && npm run nyc",
         "nyc": "nyc ava",
