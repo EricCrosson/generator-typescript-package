@@ -135,6 +135,7 @@ module.exports = class extends Generator {
         this.generate('package_json', 'package.json')
         this.generate('src/src.ts', `src/${input.pkg}.ts`)
         this.generate('test/test.ts', `test/test-${input.pkg}.ts`)
+        this.generate('.eslintrc.js')
 
         // TODO: this probably changes with lerna
         this.generate('typedoc.js')
