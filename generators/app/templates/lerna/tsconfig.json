@@ -9,12 +9,6 @@
         "dist"
     ],
     "compilerOptions": {
-        /* Basic Options */
-        "outDir": "./dist",                        /* Redirect output structure to the directory. */
-        // "rootDir": "./",                       /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */
-
-        /* Module Resolution Options */
-        // "baseUrl": "./",                       /* Base directory to resolve non-absolute module names. */
-        // "paths": {},                           /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */
+        "outDir": "./dist"
     }
 }
