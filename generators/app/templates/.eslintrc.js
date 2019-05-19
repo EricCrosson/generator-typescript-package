@@ -27,6 +27,7 @@ module.exports = {
         '@typescript-eslint/prefer-for-of': 'warn',
         '@typescript-eslint/prefer-includes': 'warn',
         '@typescript-eslint/prefer-namespace-keyword': 'warn',
+        '@typescript-eslint/no-namespace': 'off',
         '@typescript-eslint/prefer-string-starts-ends-with': 'warn',
         '@typescript-eslint/promise-function-async': ['error'],
         '@typescript-eslint/require-array-sort-compare': 'error',
