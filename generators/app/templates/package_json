@@ -7,6 +7,7 @@
     "scripts": {
         "prepublishOnly": "npm run clean && npm run compile",
         "compile": "tsc",
+        "watch:compile": "nodemon -e 'ts json' -x 'npm run compile || true'",
         "clean": "rm -rf dist",
         "ava": "ava -s -v",
         "ava:fail-fast": "ava -s -v --fail-fast",
