@@ -5,8 +5,8 @@
     "main": "dist/src/<%= pkg %>.js",
     "types": "dist/src/<%= pkg %>.d.ts",
     "scripts": {
-        "prepublishOnly": "npm run compile",
-        "compile": "npm run clean && tsc",
+        "prepublishOnly": "npm run clean && npm run compile",
+        "compile": "tsc",
         "clean": "rm -rf dist",
         "ava": "ava -s -v",
         "ava:fail-fast": "ava -s -v --fail-fast",

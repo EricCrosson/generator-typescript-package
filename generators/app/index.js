@@ -162,7 +162,7 @@ module.exports = class extends Generator {
     _customizeCompileForLernaInPackageJson() {
         this.fs.extendJSON(this.destinationPath('package.json'), {
             scripts: {
-                compile: 'npm run clean && tsc -b .',
+                compile: 'tsc -b .',
             }
         })
     }
