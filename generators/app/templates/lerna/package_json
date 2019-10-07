@@ -1,0 +1,86 @@
+{
+    "name": "<%= scopedPkg %>",
+    "version": "<%= version %>",
+    "description": "<%- tagline %>",
+    "main": "dist/src/<%= pkg %>.js",
+    "types": "dist/src/<%= pkg %>.d.ts",
+    "scripts": {
+        "prepublishOnly": "npm run clean && npm run compile",
+        "compile": "tsc",
+        "watch:compile": "nodemon -e 'ts json' -x 'npm run compile || true'",
+        "clean": "rm -rf dist",
+        "ava": "ava -s -v",
+        "ava:fail-fast": "ava -s -v --fail-fast",
+        "watch:ava": "nodemon -e 'ts json' -x 'npm run ava || true'",
+        "watch:ava:fail-fast": "nodemon -e 'ts json' -x 'npm run ava:fail-fast || true'",
+        "lint": "eslint --ext ts .",
+        "lint:fix": "eslint --ext ts --fix .",
+        "watch:lint": "nodemon -e 'ts js json' -x 'npm run lint || true'",
+        "test": "npm run lint && npm run nyc",
+        "nyc": "nyc ava",
+        "test:tap": "nyc ava --tap | tap-nyc",
+        "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
+        "watch:test": "nodemon -e 'ts json' -x 'npm test || true'",
+        "typedoc": "typedoc",
+        "push-with-tags": "git push origin master && git push origin --tags",
+        "push-and-publish": "npm run push-with-tags && npm publish"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+<%= git_repository %>.git"
+    },
+    "keywords": [
+    ],
+    "author": "<%= author %> <<%= email %>> (https://<%= git_forge %>/<%= git_username %>)",
+    "license": "<%- license %>",
+    "bugs": {
+        "url": "<%= git_repository %>/issues"
+    },
+    "homepage": "<%= git_repository %>",
+    "dependencies": {
+    },
+    "devDependencies": {
+        "@types/node": "^10.14.4",
+        "@typescript-eslint/eslint-plugin": "^1.7.0",
+        "@typescript-eslint/parser": "^1.7.0",
+        "ava": "^1.4.1",
+        "codecov": "^3.1.0",
+        "eslint": "^5.16.0",
+        "nyc": "^14.1.0",
+        "tap-nyc": "^1.0.3",
+        "ts-node": "^7.0.1",
+        "typedoc": "^0.14.2",
+        "typedoc-plugin-markdown": "^1.1.27",
+        "typescript": "^3.4.1"
+    },
+    "files": [
+        "dist/src/"
+    ],
+    "ava": {
+        "compileEnhancements": false,
+        "files": [
+            "!dist/**/*.d.ts",
+            "test/**/test-*.ts"
+        ],
+        "extensions": [
+            "ts"
+        ],
+        "require": [
+            "ts-node/register"
+        ]
+    },
+    "nyc": {
+        "include": [
+            "src/*.ts"
+        ],
+        "exclude": [
+            "typings"
+        ],
+        "extension": [
+            ".ts"
+        ],
+        "require": [
+            "ts-node/register"
+        ]
+    }
+}
