@@ -141,10 +141,12 @@ module.exports = class extends Generator {
         this.generate('typedoc.js')
 
         if (this.options.lerna) {
+            // TODO: use 4-space indentation
             this.generate('lerna/package_json', 'package.json')
             this.generate('lerna/tsconfig.json', 'tsconfig.json')
             this._customizeCompileForLernaInPackageJson()
         } else {
+            // TODO: use 4-space indentation
             this.generate('package_json', 'package.json')
             this.generate('tsconfig.json')
             this.generate('dot_gitignore', '.gitignore')
