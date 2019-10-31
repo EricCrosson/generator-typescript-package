@@ -78,9 +78,6 @@
         "include": [
             "src/*.ts"
         ],
-        "exclude": [
-            "typings"
-        ],
         "extension": [
             ".ts"
         ],
