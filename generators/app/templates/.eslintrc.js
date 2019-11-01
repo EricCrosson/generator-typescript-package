@@ -19,7 +19,14 @@ module.exports = {
                 allowedNames: ['self'],
             },
         ],
-        '@typescript-eslint/no-unnecessary-type-assertion': ['error'],
+        '@typescript-eslint/no-inferrable-types': [
+            'error',
+            {
+                ignoreParameters: true,
+                ignoreProperties: true
+            },
+        ],
+        '@typescript-eslint/no-unnecessary-type-assertion': ['warn'],
         '@typescript-eslint/no-useless-constructor': 'warn',
         '@typescript-eslint/adjacent-overload-signatures': 'warn',
         '@typescript-eslint/await-thenable': 'error',
@@ -27,7 +34,6 @@ module.exports = {
         '@typescript-eslint/prefer-for-of': 'warn',
         '@typescript-eslint/prefer-includes': 'warn',
         '@typescript-eslint/prefer-namespace-keyword': 'warn',
-        '@typescript-eslint/no-namespace': 'off',
         '@typescript-eslint/prefer-string-starts-ends-with': 'warn',
         '@typescript-eslint/promise-function-async': ['error'],
         '@typescript-eslint/require-array-sort-compare': 'error',
