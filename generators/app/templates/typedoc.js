@@ -2,6 +2,10 @@ module.exports = {
     src: [
         './src/<%= pkg %>.ts',
     ],
+    exclude: [
+        './node_modules/**/*',
+        './dist/**/*'
+    ],
     mode: 'file',
     includeDeclarations: true,
     tsconfig: 'tsconfig.json',
