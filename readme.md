@@ -15,6 +15,7 @@ package skeleton with
 
 ``` shell
 yo typescript-package [--lerna] [--default]
+git commit -m 'Initial commit'
 ```
 
 Finally, address each `TODO:` statement in the generated project.
