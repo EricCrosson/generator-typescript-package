@@ -131,7 +131,7 @@ module.exports = class extends Generator {
     }
 
     installSimpleTemplates() {
-        this.generate('readme.md')
+        this.generate('doc/readme.md')
         this.generate('src/src.ts', `src/${input.pkg}.ts`)
         this.generate('test/test.ts', `test/test-${input.pkg}.ts`)
         this.generate('.eslintrc.js')
@@ -197,6 +197,11 @@ module.exports = class extends Generator {
     }
 
     install() {
-        this.npmInstall()
+        if (!this.options.lerna) {
+            this.npmInstall()
+        }
+        console.log(`Please run
+
+    git commit -m 'Initial commit'`)
     }
 }

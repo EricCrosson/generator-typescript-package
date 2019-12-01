@@ -27,6 +27,7 @@ module.exports = {
             },
         ],
         '@typescript-eslint/no-unnecessary-type-assertion': ['warn'],
+        '@typescript-eslint/no-unused-vars': ['error', {'argsIgnorePattern': '^_'}],
         '@typescript-eslint/no-useless-constructor': 'warn',
         '@typescript-eslint/adjacent-overload-signatures': 'warn',
         '@typescript-eslint/await-thenable': 'error',

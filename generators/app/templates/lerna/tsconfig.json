@@ -9,6 +9,10 @@
         "dist"
     ],
     "compilerOptions": {
-        "outDir": "./dist"
+        "outDir": "./dist",
+        "baseUrl": "./",
+        "paths": {
+            "*": ["src/@types/*"]
+        }
     }
 }
