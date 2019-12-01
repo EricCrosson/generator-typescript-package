@@ -6,7 +6,6 @@ flycheck_*
 *.*~
 .yo-rc.json
 /dist/
-/package-lock.json
 /.nyc_output
 /coverage.lcov
 /scratch
