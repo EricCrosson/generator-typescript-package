@@ -197,6 +197,8 @@ module.exports = class extends Generator {
     }
 
     install() {
-        this.npmInstall()
+        if (!this.options.lerna) {
+            this.npmInstall()
+        }
     }
 }
