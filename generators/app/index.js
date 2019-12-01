@@ -200,8 +200,12 @@ module.exports = class extends Generator {
         if (!this.options.lerna) {
             this.npmInstall()
         }
+    }
+
+    end() {
         console.log(`Please run
 
-    git commit -m 'Initial commit'`)
+    git commit -m 'Initial commit'
+`)
     }
 }
