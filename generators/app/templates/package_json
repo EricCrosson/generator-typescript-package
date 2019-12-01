@@ -20,14 +20,9 @@
         "test:tap": "nyc ava --tap | tap-nyc",
         "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
         "watch:test": "nodemon -e 'ts json' -x 'npm test || true'",
-        "typedoc": "typedoc",
+        "typedoc": "typedoc && cp -f ./typedoc/README.md ./readme.md",
         "push-with-tags": "git push origin master && git push origin --tags",
         "push-and-publish": "npm run push-with-tags && npm publish"
-    },
-    "husky": {
-        "hooks": {
-            "pre-push": "npm run typedoc && git add doc && (git commit -m 'Update documentation' || true)"
-        }
     },
     "repository": {
         "type": "git",
@@ -50,7 +45,6 @@
         "ava": "^2.4.0",
         "codecov": "^3.1.0",
         "eslint": "^6.6.0",
-        "husky": "^1.3.1",
         "nyc": "^14.1.0",
         "tap-nyc": "^1.0.3",
         "ts-node": "^8.5.2",
