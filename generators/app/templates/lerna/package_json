@@ -19,7 +19,7 @@
         "test": "nyc ava",
         "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
         "watch:test": "nodemon -e 'ts json' -x 'npm test || true'",
-        "typedoc": "typedoc && cp -f ./typedoc/README.md ./readme.md",
+        "typedoc": "typedoc",
         "push-with-tags": "git push origin master && git push origin --tags",
         "push-and-publish": "npm run push-with-tags && npm publish"
     },

@@ -131,7 +131,7 @@ module.exports = class extends Generator {
     }
 
     installSimpleTemplates() {
-        this.generate('doc/readme.md')
+        this.generate('readme.md')
         this.generate('src/src.ts', `src/${input.pkg}.ts`)
         this.generate('test/test.ts', `test/test-${input.pkg}.ts`)
         this.generate('.eslintrc.js')
