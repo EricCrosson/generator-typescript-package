@@ -9,7 +9,7 @@
         "compile": "tsc",
         "watch:compile": "nodemon -e 'ts json' -x 'npm run compile || true'",
         "clean": "rm -rf dist",
-        "ava": "ava -s -v",
+        "ava": "ava -v",
         "ava:fail-fast": "ava -s -v --fail-fast",
         "watch:ava": "nodemon -e 'ts json' -x 'npm run ava || true'",
         "watch:ava:fail-fast": "nodemon -e 'ts json' -x 'npm run ava:fail-fast || true'",
