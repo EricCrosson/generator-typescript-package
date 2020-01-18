@@ -142,7 +142,6 @@ module.exports = class extends Generator {
         if (this.options.lerna) {
             this.generate('lerna/package_json', 'package.json')
             this.generate('lerna/tsconfig.json', 'tsconfig.json')
-            this._customizeCompileForLernaInPackageJson()
         } else {
             this.generate('package_json', 'package.json')
             this.generate('tsconfig.json')
@@ -157,14 +156,6 @@ module.exports = class extends Generator {
         } else if (input.git_repository.includes('gitlab.com')) {
             this.generate('.gitlab-ci.yml')
         }
-    }
-
-    _customizeCompileForLernaInPackageJson() {
-        this.fs.extendJSON(this.destinationPath('package.json'), {
-            scripts: {
-                compile: 'tsc -b .',
-            }
-        })
     }
 
     addKeywordsToPackageJson() {

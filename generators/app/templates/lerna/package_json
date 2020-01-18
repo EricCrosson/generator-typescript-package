@@ -6,7 +6,7 @@
     "types": "dist/src/<%= pkg %>.d.ts",
     "scripts": {
         "prepublishOnly": "npm run clean && npm run compile",
-        "compile": "tsc",
+        "compile": "tsc -b .",
         "watch:compile": "nodemon -e 'ts json' -x 'npm run compile || true'",
         "clean": "rm -rf dist",
         "ava": "ava -s -v",
