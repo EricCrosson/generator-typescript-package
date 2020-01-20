@@ -14,7 +14,7 @@
         "ava:fail-fast": "ava -v --fail-fast",
         "watch:ava:fail-fast": "nodemon -e 'ts json' -x 'npm run ava:fail-fast || true'",
         "ava:serial": "ava -v -s",
-        "watch:ava:serial": "nodemon -e 'ts json' -x 'npm run ava:serial || true',
+        "watch:ava:serial": "nodemon -e 'ts json' -x 'npm run ava:serial || true'",
         "lint": "eslint --ext ts .",
         "lint:fix": "eslint --ext ts --fix .",
         "watch:lint": "nodemon -e 'ts js json' -x 'npm run lint || true'",
