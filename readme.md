@@ -64,6 +64,9 @@ npm run watch:ava:fail-fast  # stops printing on first test-failure
 - publishes only compiled JavaScript to npm
 - linting with [typescript-eslint](https://github.com/typescript-eslint/typescript-eslint)
 
+> Note: there has been no compatibility testing for Windows
+> development environments
+
 ## License
 
 ISC © Eric Crosson
