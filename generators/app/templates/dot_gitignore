@@ -9,4 +9,3 @@ flycheck_*
 /.nyc_output
 /coverage.lcov
 /scratch
-/typedoc
