@@ -57,7 +57,7 @@ npm run watch:ava:fail-fast  # stops printing on first test-failure
 - supports [github](https://github.com) (for public repositories)
 - supports [gitlab](https://gitlab.com) (for private repositories)
 - supports [lerna](https://github.com/lerna/lerna) mono-repos
-- auto-generates documentation on git-push ([typedoc](https://typedoc.org))
+- support documentation generation with [typedoc](https://typedoc.org)
 - runs tests in parallel with [ava](https://github.com/avajs/ava)
 - continuous integration ([travis-ci](https://travis-ci.org)/[gitlab-ci](https://docs.gitlab.com/ee/ci/))
 - code coverage ([codecov](https://codecov.io))
