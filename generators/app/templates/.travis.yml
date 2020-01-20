@@ -15,16 +15,16 @@ sudo: false
 matrix:
   fast_finish: true
 
-install:
-  - npm uninstall typescript --no-save
-  - npm uninstall tslint --no-save
-  - npm install
-
 cache:
   directories:
     - node_modules
 
 git:
   depth: 1
+
+install:
+  - npm uninstall typescript --no-save
+  - npm uninstall tslint --no-save
+  - npm install
 
 after_success: npm run coverage
