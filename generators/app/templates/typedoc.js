@@ -1,6 +1,6 @@
 module.exports = {
     src: [
-        './src/<%= pkg %>.ts',
+        './src/<%= packageNameKebabCase %>.ts',
     ],
     exclude: [
         './node_modules/**/*',
@@ -14,10 +14,10 @@ module.exports = {
     excludeProtected: true,
     excludeExternals: true,
     excludeNotExported: true,
-    readme: './readme.md',
-    name: '<%= pkg %>',
+    readme: 'none',
+    name: '<%= packageNameKebabCase %>',
     ignoreCompilerErrors: true,
-    plugin: 'none',
+    plugin: 'typedoc-plugin-markdown',
     listInvalidSymbolLinks: true,
     theme: 'markdown'
 };

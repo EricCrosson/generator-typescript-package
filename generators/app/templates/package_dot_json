@@ -1,63 +1,60 @@
 {
-    "name": "<%= scopedPkg %>",
+    "name": "<%= scopedPackageName %>",
     "version": "<%= version %>",
     "description": "<%- tagline %>",
-    "main": "dist/src/<%= pkg %>.js",
-    "types": "dist/src/<%= pkg %>.d.ts",
+    "main": "dist/src/<%= packageNameKebabCase %>.js",
+    "types": "dist/src/<%= packageNameKebabCase %>.d.ts",
     "scripts": {
         "prepublishOnly": "npm run clean && npm run compile",
-        "compile": "tsc -b .",
+        "compile": "tsc",
         "watch:compile": "nodemon -e 'ts json' -x 'npm run compile || true'",
         "clean": "rimraf --no-glob dist",
         "ava": "ava -v",
-        "watch:ava": "nodemon -e 'ts json' -x 'npm run ava || true'",
         "ava:fail-fast": "ava -v --fail-fast",
-        "watch:ava:fail-fast": "nodemon -e 'ts json' -x 'npm run ava:fail-fast || true'",
         "ava:serial": "ava -v -s",
+        "watch:ava": "nodemon -e 'ts json' -x 'npm run ava || true'",
+        "watch:ava:fail-fast": "nodemon -e 'ts json' -x 'npm run ava:fail-fast || true'",
         "watch:ava:serial": "nodemon -e 'ts json' -x 'npm run ava:serial || true'",
         "lint": "eslint --ext ts .",
         "lint:fix": "eslint --ext ts --fix .",
         "watch:lint": "nodemon -e 'ts js json' -x 'npm run lint || true'",
         "test": "nyc ava",
-        "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
         "watch:test": "nodemon -e 'ts json' -x 'npm test || true'",
-        "typedoc": "typedoc",
-        "push-with-tags": "git push origin master && git push origin --tags",
-        "push-and-publish": "npm run push-with-tags && npm publish"
+        "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
+        "typedoc": "typedoc"
     },
     "repository": {
         "type": "git",
-        "url": "git+<%= git_repository %>.git"
+        "url": "git+<%= gitRepository %>.git"
     },
-    "keywords": [
-    ],
-    "author": "<%= author %> <<%= email %>> (https://<%= git_forge %>/<%= git_username %>)",
+    "author": "<%= author %> <<%= email %>> (https://<%= gitHost %>/<%= gitUsername %>)",
     "license": "<%- license %>",
     "bugs": {
-        "url": "<%= git_repository %>/issues"
+        "url": "<%= gitRepository %>/issues"
     },
-    "homepage": "<%= git_repository %>",
-    "dependencies": {
-    },
+    "homepage": "<%= gitRepository %>",
     "devDependencies": {
-        "@types/node": "^12.12.7",
-        "@typescript-eslint/eslint-plugin": "^2.6.0",
-        "@typescript-eslint/parser": "^2.6.0",
-        "ava": "^2.4.0",
-        "codecov": "^3.1.0",
-        "eslint": "^6.6.0",
-        "nyc": "^14.1.0",
-        "rimraf": "^3.0.0",
-        "ts-node": "^8.5.2",
-        "typedoc": "^0.14.2",
-        "typedoc-plugin-markdown": "^1.1.27",
-        "typescript": "^3.7.2"
+        "@types/node": "^13.7.1",
+        "@typescript-eslint/eslint-plugin": "^2.19.2",
+        "@typescript-eslint/parser": "^2.19.2",
+        "ava": "^3.3.0",
+        "ava-fast-check": "^1.1.2",
+        "codecov": "^3.6.5",
+        "eslint": "^6.8.0",
+        "eslint-plugin-ava": "^10.0.1",
+        "eslint-plugin-security": "^1.4.0",
+        "fast-check": "^1.21.0",
+        "nyc": "^15.0.0",
+        "rimraf": "^3.0.2",
+        "ts-node": "^8.6.2",
+        "typedoc": "^0.16.9",
+        "typedoc-plugin-markdown": "^2.2.16",
+        "typescript": "^3.7.5"
     },
     "files": [
         "dist/src/"
     ],
     "ava": {
-        "compileEnhancements": false,
         "files": [
             "!dist/**/*.d.ts",
             "test/**/test-*.ts"

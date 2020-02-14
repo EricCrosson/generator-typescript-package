@@ -1,11 +1,17 @@
 ---
-image: node:12.10-alpine
+image: node:12.16.0-alpine
 
 stages:
+  - lint
   - test
 
 before_script:
   - npm install
+
+lint:
+  stage: lint
+  script:
+    - npm run lint
 
 test:
   stage: test

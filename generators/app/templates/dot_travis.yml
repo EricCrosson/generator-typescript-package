@@ -1,0 +1,23 @@
+---
+language: node_js
+
+node_js:
+  - node
+  - 12
+  - 11
+  - 10
+
+stages:
+  - lint
+  - test
+
+install:
+  - npm ci
+
+jobs:
+  include:
+    - stage: lint
+      script: npm run lint
+
+after_success:
+  - npm run coverage

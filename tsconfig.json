@@ -1,26 +1,18 @@
 {
     "include": [
-        "src/**/*",
-	"test/**/test-*"
+        "src/**/*"
     ],
     "exclude": [
         "node_modules",
         "dist"
     ],
     "compilerOptions": {
-        "target": "es5",
+        "target": "es6",
         "module": "commonjs",
         "lib": ["es6"],
-        "declaration": true,
-        "declarationMap": true,
-        "sourceMap": true,
-        "outDir": "./dist",
+        "outDir": "./generators/",
         "downlevelIteration": true,
         "strict": true,
-        "baseUrl": "./",
-        "paths": {
-            "*": ["src/@types/*"]
-        },
         "esModuleInterop": true
     }
 }

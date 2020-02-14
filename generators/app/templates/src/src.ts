@@ -1,5 +1,5 @@
 /**
- * <%= pkg %>
+ * <%= packageNameKebabCase %>
  * <%- tagline %>
  */
 
@@ -7,6 +7,6 @@
 /**
  * TODO: document
  */
-<%= exportStatement %> function <%= camelCasePkg %>() {
+<%= exportStatement %> function <%= packageNameCamelCase %>() {
     // TODO: implement
 }

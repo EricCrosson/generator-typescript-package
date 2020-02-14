@@ -3,3 +3,4 @@
 node_modules/
 flycheck_*
 package-lock.json
+.nyc_output/
