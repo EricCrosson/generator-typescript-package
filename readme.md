@@ -125,9 +125,16 @@ if configured with an NPM auth-token, on builds meeting the following criteria:
 - travis-ci environment variable `NPM_AUTH_TOKEN` has been defined
 
 All you have to do to enable this feature is [define the variable]
-`NPM_AUTH_TOKEN` in Travis CI's repository settings.
+`NPM_AUTH_TOKEN` in Travis CI's repository settings. You can determine
+your NPM auth-token with the following shell command
 
-A compatible workflow could then look like
+```sh
+cat ~/.npmrc | grep _authToken | cut -d'=' -f2
+```
+
+(Note that `~/.npmrc` is created by the `npm login` command.)
+
+A workflow leveraging this auto-publication could then resemble:
 
 1. develop changes on a feature-branch
 2. commit changes
