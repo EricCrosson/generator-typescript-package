@@ -14,6 +14,35 @@
 [yeoman]: https://github.com/yeoman
 [TypeScript]: https://www.typescriptlang.org
 
+## Features
+
+- supports [scoped] npm packages
+- supports [github]
+- supports [gitlab]
+- supports [lerna] mono-repos
+- support documentation generation with [typedoc]
+- runs tests in parallel with [ava]
+- continuous integration ([travis-ci]/[gitlab-ci])
+- code coverage ([codecov])
+- linting with [typescript-eslint]
+- publishes only compiled JavaScript to npm (no typescript sources)
+- automatic deploys to NPM [if configured]
+
+> Note: there has been no explicit compatibility testing for Windows
+> development-environments
+
+[scoped]: https://docs.npmjs.com/about-scopes
+[github]: https://github.com
+[gitlab]: https://gitlab.com
+[lerna]: https://github.com/lerna/lerna
+[typedoc]: https://typedoc.org
+[ava]: https://github.com/avajs/ava
+[travis-ci]: https://travis-ci.org
+[gitlab-ci]: https://docs.gitlab.com/ee/ci/
+[codecov]: https://codecov.io
+[typescript-eslint]: https://github.com/typescript-eslint/typescript-eslint
+[if configured]: #Travis-CI-Deploys-to-NPM
+
 ## Install
 
 ``` shell
@@ -36,6 +65,8 @@ Finally, address each `TODO:` statement in the generated project.
 
 #### lerna
 
+> default: false
+
 Generate a package in a [lerna] mono-repo. This package is expected to
 be built with TypeScript 3.0's [build] mode.
 
@@ -44,7 +75,10 @@ be built with TypeScript 3.0's [build] mode.
 
 #### default
 
-Create a package with a single [default] export.
+> default: false
+
+Create a package with a single [default]-export, as opposed to a
+named-export.
 
 [default]: https://www.typescriptlang.org/docs/handbook/modules.html
 
@@ -63,33 +97,43 @@ npm run watch:ava
 npm run watch:ava:fail-fast  # stops printing on first test-failure
 ```
 
-## Features
+## Configuring Integrations
 
-- supports [scoped] npm packages
-- supports [github]
-- supports [gitlab]
-- supports [lerna] mono-repos
-- support documentation generation with [typedoc]
-- runs tests in parallel with [ava]
-- continuous integration ([travis-ci]/[gitlab-ci])
-- code coverage ([codecov])
-- publishes only compiled JavaScript to npm
-- linting with [typescript-eslint]
+### Travis CI
 
-> Note: there has been no explicit compatibility testing for Windows
-> development-environments
+> Supports: GitHub repositories
 
-[scoped]: https://docs.npmjs.com/about-scopes
-[github]: https://github.com
-[gitlab]: https://gitlab.com
-[lerna]: https://github.com/lerna/lerna
-[typedoc]: https://typedoc.org
-[ava]: https://github.com/avajs/ava
-[travis-ci]: https://travis-ci.org
-[gitlab-ci]: https://docs.gitlab.com/ee/ci/
-[codecov]: https://codecov.io
-[typescript-eslint]: https://github.com/typescript-eslint/typescript-eslint
+Just [enable] Travis CI for your new github repository and on each push
+ci will run automatically.
 
-## License
+[enable]: https://travis-ci.org/account/repositories
 
-ISC © Eric Crosson
+### Travis CI Deploys to NPM
+
+> Supports: GitHub repositories
+
+The generated [travis.yml] file will automatically deploy your package to NPM,
+if configured with an NPM auth-token, on builds meeting the following criteria:
+
+- travis-ci is building a commit to the master branch
+- the commit includes a git tag (which is added automatically by `npm version`)
+- travis-ci is not building a pull-request commit
+- travis-ci environment variable `NPM_AUTH_TOKEN` has been defined
+
+All you have to do to enable this feature is [define the variable]
+`NPM_AUTH_TOKEN` in Travis CI's repository settings.
+
+A compatible workflow could then look like
+
+1. develop changes on a feature-branch
+2. commit changes
+3. use `npm version` to bump version
+4. push feature-branch
+5. open a pull-request to master
+6. approve the pull-request after ci passes
+
+> Note: if `NPM_AUTH_TOKEN` is not defined ci will skip the deploy stage
+> without breaking
+
+[travis.yml]: /generators/app/templates/dot_travis.yml
+[define the variable]: https://docs.travis-ci.com/user/environment-variables/#defining-variables-in-repository-settings
