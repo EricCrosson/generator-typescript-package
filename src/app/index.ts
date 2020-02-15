@@ -137,6 +137,7 @@ module.exports = class extends Generator {
     generateSimpleTemplates() {
         generateTemplate('dot_eslintignore')
         generateTemplate('dot_eslintrc.js')
+        generateTemplate('dot_prettierrc.json')
         generateTemplate('package_dot_json')
         generateTemplate('readme.md')
         generateTemplate('typedoc.js')
@@ -251,3 +252,4 @@ Please commit before making changes by running:
 
 //  LocalWords:  monoepo copyrightHolder gitRepository gitUsername npx ncu
 //  LocalWords:  globalGitConfig packageNameKebabCase eslintrc travis
+//  LocalWords:  prettierrc
