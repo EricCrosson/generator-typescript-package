@@ -23,8 +23,9 @@
 - supports [gitlab]
 - supports [lerna] mono-repos
 - support documentation generation with [typedoc]
-- runs tests in parallel with [ava]
 - continuous integration ([travis-ci]/[gitlab-ci])
+- runs tests in parallel with [ava]
+- property-testing with [fast-check]
 - code coverage ([codecov])
 - linting with [typescript-eslint]
 - publishes only compiled JavaScript to npm (no typescript sources)
@@ -39,6 +40,7 @@
 [lerna]: https://github.com/lerna/lerna
 [typedoc]: https://typedoc.org
 [ava]: https://github.com/avajs/ava
+[fast-check]: https://github.com/dubzzz/fast-check
 [travis-ci]: https://travis-ci.org
 [gitlab-ci]: https://docs.gitlab.com/ee/ci/
 [codecov]: https://codecov.io
