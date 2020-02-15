@@ -42,7 +42,7 @@ export function generator(
                     ? camelCase(userInput.packageNameKebabCase)
                     : ['{', camelCase(userInput.packageNameKebabCase), '}'].join(' '),
 
-                npm_install_from: userInput.license === 'SEE LICENSE IN <LICENSE>'
+                npmInstallFrom: userInput.license === 'SEE LICENSE IN <LICENSE>'
                     ? `git+ssh://git@${userInput.gitHost}/${userInput.gitGroup}/${userInput.packageNameKebabCase}`
                     : userInput.scopedPackageName
             }

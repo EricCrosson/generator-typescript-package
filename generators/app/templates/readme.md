@@ -16,7 +16,7 @@
 ## Install
 
 ```shell
-npm install <%= npm_install_from %>
+npm install <%= npmInstallFrom %>
 ```
 
 ## Use

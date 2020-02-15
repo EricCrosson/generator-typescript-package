@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable security/detect-object-injection */
 export function memoize<F extends (...args: any[]) => any>(f: F): F {
 
     const memory: Record<string, ReturnType<F>> = Object.create(null)
@@ -16,3 +18,5 @@ export function memoize<F extends (...args: any[]) => any>(f: F): F {
 
     } as F
 }
+/* eslint-enable @typescript-eslint/no-explicit-any */
+/* eslint-enable security/detect-object-injection */

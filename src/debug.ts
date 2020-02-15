@@ -5,8 +5,10 @@ function isDebugMode(): boolean {
         || process.env.DEBUG !== undefined
 }
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 function mockDebugger(tag: string): Debugger {
-    function format(_formatter: any, ..._args: any[]) {}
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    function format(_formatter: any, ..._args: any[]): void {}
     Object.defineProperties(
         format,
         {
@@ -35,9 +37,12 @@ function mockDebugger(tag: string): Debugger {
     )
     return format as Debugger
 }
+/* eslint-enable @typescript-eslint/no-explicit-any */
 
+/* eslint-disable @typescript-eslint/no-var-requires */
 export function debug(tag: string): Debugger {
     return isDebugMode()
         ? require('debug')(tag)
         : mockDebugger(tag)
 }
+/* eslint-enable @typescript-eslint/no-var-requires */

@@ -47,6 +47,7 @@ export function scopedPackageName(
         : packageNameKebabCase
 }
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export function gitRemote(config: GitConfig): Maybe<string> {
     return Maybe.fromNullable(config['remote "origin"'])
         .chainNullable(origin => origin.url)
@@ -58,6 +59,7 @@ export function gitRemote(config: GitConfig): Maybe<string> {
             parsed.repo
         ].join(''))
 }
+/* eslint-enable @typescript-eslint/no-explicit-any */
 
 export function gitRepositoryWithoutSuffix(repository: string): string {
     // DISCUSS: validating git url https://github.com/jonschlinkert/is-git-url

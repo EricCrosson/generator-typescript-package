@@ -48,7 +48,7 @@ module.exports = class extends Generator {
         )
     }
 
-    initializing() {
+    initializing(): void {
         parseCommandLineOptions()
     }
 
@@ -91,6 +91,7 @@ module.exports = class extends Generator {
                     type: 'input',
                     name: 'gitRepository',
                     message: 'Your hosted git repository (https)',
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     default: gitRemote(localGitConfig((this as any).contextRoot))
                         .orDefault(
                             [
@@ -134,7 +135,7 @@ module.exports = class extends Generator {
         })
     }
 
-    generateSimpleTemplates() {
+    generateSimpleTemplates(): void {
         generateTemplate('dot_eslintignore')
         generateTemplate('dot_eslintrc.js')
         generateTemplate('dot_prettierrc.json')
@@ -155,7 +156,7 @@ module.exports = class extends Generator {
         }
     }
 
-    generateGitForgeCiFile() {
+    generateGitForgeCiFile(): void {
         if (this.options.lerna) {
             return
         }
@@ -172,13 +173,13 @@ module.exports = class extends Generator {
         }
     }
 
-    generateLicense() {
+    generateLicense(): void {
         if (userInput.license === proprietaryLicense) {
             generateTemplate('LICENSE')
         }
     }
 
-    addPackageJsonKeywords() {
+    addPackageJsonKeywords(): void {
         if (userInput.keywords.length > 0) {
             this.fs.extendJSON(
                 this.destinationPath('package.json'),
@@ -189,7 +190,7 @@ module.exports = class extends Generator {
         }
     }
 
-    addPackageJsonPublishConfig() {
+    addPackageJsonPublishConfig(): void {
         switch (userInput.license) {
 
             case proprietaryLicense:
@@ -216,7 +217,7 @@ module.exports = class extends Generator {
         }
     }
 
-    customizeLernaPackageJson() {
+    customizeLernaPackageJson(): void {
         if (!this.options.lerna) {
             return
         }
@@ -231,13 +232,13 @@ module.exports = class extends Generator {
         )
     }
 
-    install() {
+    install(): void {
         if (!this.options.lerna) {
             this.npmInstall()
         }
     }
 
-    end() {
+    end(): void {
         console.log(`
 Check for outdated dependencies by running:
 
