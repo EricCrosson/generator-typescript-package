@@ -132,7 +132,7 @@ your NPM auth-token with the following shell command
 cat ~/.npmrc | grep _authToken | cut -d'=' -f2
 ```
 
-(Note that `~/.npmrc` is created by the `npm login` command.)
+> Note: `~/.npmrc` is created by the `npm login` command
 
 A workflow leveraging this auto-publication could then resemble:
 
