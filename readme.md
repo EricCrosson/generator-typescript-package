@@ -116,7 +116,7 @@ ci will run automatically.
 
 > Supports: GitHub repositories
 
-The generated [travis.yml] file will automatically deploy your package to NPM,
+The generated [travis.yml] file will [automatically deploy] your package to NPM,
 if configured with an NPM auth-token, on builds meeting the following criteria:
 
 - travis-ci is building a commit to the master branch
@@ -141,3 +141,4 @@ A compatible workflow could then look like
 
 [travis.yml]: /generators/app/templates/dot_travis.yml
 [define the variable]: https://docs.travis-ci.com/user/environment-variables/#defining-variables-in-repository-settings
+[automatically deploy]: https://docs.travis-ci.com/user/deployment/npm/
