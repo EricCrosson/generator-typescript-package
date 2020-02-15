@@ -1,11 +1,13 @@
 # generator-typescript-package
 [![License][]](https://opensource.org/licenses/ISC)
 [![Build status][]](https://travis-ci.org/ericcrosson/generator-typescript-package)
+[![Code Coverage][]](https://codecov.io/gh/ericcrosson/generator-typescript-package)
 [![NPM Package][]](https://npmjs.org/package/generator-typescript-package)
 [![NPM Downloads][]](https://www.npmjs.com/package/generator-typescript-package)
 
 [License]: https://img.shields.io/badge/License-ISC-blue.svg
 [Build status]: https://travis-ci.org/ericcrosson/generator-typescript-package.svg?branch=master
+[Code Coverage]: https://codecov.io/gh/ericcrosson/generator-typescript-package/branch/master/graph/badge.svg
 [NPM Package]: https://img.shields.io/npm/v/generator-typescript-package.svg
 [NPM Downloads]: https://img.shields.io/npm/dt/generator-typescript-package.svg
 
