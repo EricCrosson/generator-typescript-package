@@ -1,9 +1,11 @@
 # <%= packageNameKebabCase %><% if (gitHost.includes('github.com')) { %>
+<%=licenseLink%>
 [![Build status][]](https://travis-ci.org/<%=gitGroup%>/<%=packageNameKebabCase%>)
 [![NPM Package][]](https://npmjs.org/package/<%=scopedPackageName%>)
 [![Code Coverage][]](https://codecov.io/gh/<%=gitGroup%>/<%=packageNameKebabCase%>)
 [![Dependencies][]](https://david-dm.org/<%=gitGroup%>/<%=packageNameKebabCase%>/status.svg)
 
+<%=licenseBadge%>
 [Build status]: https://travis-ci.org/<%=gitGroup%>/<%=packageNameKebabCase%>.svg?branch=master
 [NPM Package]: https://img.shields.io/npm/v/<%=scopedPackageName%>.svg
 [Code Coverage]: https://codecov.io/gh/<%=gitGroup%>/<%=packageNameKebabCase%>/branch/master/graph/badge.svg

@@ -3,6 +3,7 @@ import D from 'od'
 import camelCase from 'camelcase'
 import { now } from '../date'
 import { UserInput } from './user-input'
+import { licenseBadgeMarkdown } from './licenses'
 
 export type Path = string;
 
@@ -11,6 +12,8 @@ export function generator(
     generator: Generator,
     userInput: UserInput
 ): (template: Path, destination?: Path) => void {
+
+    const [licenseLink, licenseBadge] = licenseBadgeMarkdown(userInput.license)
 
     return function generate(
         template: Path,
@@ -27,6 +30,9 @@ export function generator(
             {
                 ...userInput,
 
+                licenseLink: licenseLink,
+                licenseBadge: licenseBadge,
+
                 dateYear: D.get('year', now()),
 
                 exportStatement: generator.options.default
@@ -36,7 +42,6 @@ export function generator(
                     ? camelCase(userInput.packageNameKebabCase)
                     : ['{', camelCase(userInput.packageNameKebabCase), '}'].join(' '),
 
-                // TODO: fix this archaic nonsense for the gitlab case
                 npm_install_from: userInput.license === 'SEE LICENSE IN <LICENSE>'
                     ? `git+ssh://git@${userInput.gitHost}/${userInput.gitGroup}/${userInput.packageNameKebabCase}`
                     : userInput.scopedPackageName

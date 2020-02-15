@@ -1,9 +1,13 @@
 # generator-typescript-package
-[![NPM Downloads][]](https://www.npmjs.com/package/generator-typescript-package)
+[![License][]](https://opensource.org/licenses/ISC)
+[![Build status][]](https://travis-ci.org/ericcrosson/generator-typescript-package)
 [![NPM Package][]](https://npmjs.org/package/generator-typescript-package)
+[![NPM Downloads][]](https://www.npmjs.com/package/generator-typescript-package)
 
-[NPM Downloads]: https://img.shields.io/npm/dt/generator-typescript-package.svg
+[License]: https://img.shields.io/badge/License-ISC-blue.svg
+[Build status]: https://travis-ci.org/ericcrosson/generator-typescript-package.svg?branch=master
 [NPM Package]: https://img.shields.io/npm/v/generator-typescript-package.svg
+[NPM Downloads]: https://img.shields.io/npm/dt/generator-typescript-package.svg
 
 > A [yeoman] generator for [TypeScript] packages with best practices
 
@@ -73,7 +77,7 @@ npm run watch:ava:fail-fast  # stops printing on first test-failure
 - linting with [typescript-eslint]
 
 > Note: there has been no explicit compatibility testing for Windows
-> development environments
+> development-environments
 
 [scoped]: https://docs.npmjs.com/about-scopes
 [github]: https://github.com

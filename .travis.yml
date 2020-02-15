@@ -32,7 +32,7 @@ jobs:
       deploy:
         skip_cleanup: true
         provider: npm
-        email: <%= email %>
+        email: eric.s.crosson@utexas.edu
         on:
           tags: true
 
