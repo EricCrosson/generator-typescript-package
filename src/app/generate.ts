@@ -5,7 +5,7 @@ import { now } from '../date'
 import { UserInput } from './user-input'
 import { licenseBadgeMarkdown } from './licenses'
 
-export type Path = string;
+export type Path = string
 
 
 export function generator(
