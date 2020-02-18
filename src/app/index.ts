@@ -246,11 +246,11 @@ Check for outdated dependencies by running:
 
 Please commit before making changes by running:
 
-    \`git commit -m 'Initial commit'\`
+    \`git add . && git commit -m 'initial commit'\`
 `)
     }
 }
 
-//  LocalWords:  monoepo copyrightHolder gitRepository gitUsername npx ncu
+//  LocalWords:  monoepo copyrightHolder gitRepository gitUsername
 //  LocalWords:  globalGitConfig packageNameKebabCase eslintrc travis
-//  LocalWords:  prettierrc
+//  LocalWords:  prettierrc ncu npx
