@@ -161,7 +161,7 @@ module.exports = class extends Generator {
             return
         }
 
-        switch (userInput.gitRepository) {
+        switch (userInput.gitHost) {
 
             case 'github.com':
                 generateTemplate('dot_travis.yml')

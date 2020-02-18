@@ -122,10 +122,10 @@ if configured with an NPM auth-token, on builds meeting the following criteria:
 - travis-ci is building a commit to the master branch
 - the commit includes a git tag (which is added automatically by `npm version`)
 - travis-ci is not building a pull-request commit
-- travis-ci environment variable `NPM_AUTH_TOKEN` has been defined
+- travis-ci environment variable `NPM_TOKEN` has been defined
 
 All you have to do to enable this feature is [define the variable]
-`NPM_AUTH_TOKEN` in Travis CI's repository settings. You can determine
+`NPM_TOKEN` in Travis CI's repository settings. You can determine
 your NPM auth-token with the following shell command
 
 ```sh
@@ -143,8 +143,8 @@ A workflow leveraging this auto-publication could then resemble:
 5. open a pull-request to master
 6. approve the pull-request after ci passes
 
-> Note: if `NPM_AUTH_TOKEN` is not defined ci will skip the deploy stage
-> without breaking
+> Note: if `NPM_TOKEN` is not defined ci will skip the deploy stage without
+> breaking
 
 [travis.yml]: /generators/app/templates/dot_travis.yml
 [define the variable]: https://docs.travis-ci.com/user/environment-variables/#defining-variables-in-repository-settings

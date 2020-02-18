@@ -23,7 +23,6 @@ export function licenseBadgeMarkdown(license: SupportedLicense): [string, string
             ]
         case proprietaryLicense:
             return [
-                // TODO
                 '[![License][]](LICENSE)',
                 '[License]: https://img.shields.io/badge/UNLICENSED-blue.svg'
             ]

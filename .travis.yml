@@ -14,7 +14,7 @@ stages:
     if: |
       branch = master AND
       type NOT IN (pull_request) AND
-      env(NPM_AUTH_TOKEN) IS present
+      env(NPM_TOKEN) IS present
 
 install:
   - npm ci
@@ -26,7 +26,7 @@ jobs:
     - stage: deploy
       before_script:
         - npm run compile
-        - echo "//registry.npmjs.org/:_authToken=\${NPM_AUTH_TOKEN}" > .npmrc
+        - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
       script:
         - npm publish
       deploy:
