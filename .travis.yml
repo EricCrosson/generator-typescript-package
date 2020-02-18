@@ -13,8 +13,8 @@ stages:
   - name: deploy
     if: |
       branch = master AND
-      type NOT IN (pull_request) AND
-      env(NPM_TOKEN) IS present
+      env(NPM_TOKEN) IS present AND
+      type NOT IN (pull_request)
 
 install:
   - npm ci
@@ -22,19 +22,21 @@ install:
 jobs:
   include:
     - stage: lint
-      script: npm run lint
+      script:
+        - npm run lint
+    - stage: test
+      script:
+        - npm test
+      after_success:
+        - npm run coverage
     - stage: deploy
       before_script:
-        - npm run compile
         - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
       script:
-        - npm publish
+        - skip
       deploy:
         skip_cleanup: true
-        provider: npm
-        email: eric.s.crosson@utexas.edu
+        provider: script
+        script: npm publish
         on:
-          tags: true
-
-after_success:
-  - npm run coverage
+          condition: $(git describe --exact-match HEAD 2>/dev/null)

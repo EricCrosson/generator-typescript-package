@@ -16,8 +16,7 @@
         "lint": "eslint --ext ts src",
         "lint:fix": "eslint --ext ts --fix src",
         "test": "nyc ava",
-        "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
-        "push-and-publish": "git push origin master && git push origin --tags && npm publish"
+        "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
     },
     "files": [
         "generators"
