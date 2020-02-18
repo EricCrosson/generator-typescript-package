@@ -16,8 +16,13 @@
         "lint": "eslint --ext ts src",
         "lint:fix": "eslint --ext ts --fix src",
         "test": "nyc ava",
-        "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
+        "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
+        "lint-staged": "lint-staged"
     },
+    "lint-staged": {
+        "*.ts": "eslint"
+    },
+    "pre-commit": "lint-staged",
     "files": [
         "generators"
     ],
@@ -61,7 +66,9 @@
         "eslint": "^6.8.0",
         "eslint-plugin-ava": "^10.0.1",
         "eslint-plugin-security": "^1.4.0",
+        "lint-staged": "^10.0.7",
         "nyc": "^15.0.0",
+        "pre-commit": "^1.2.2",
         "rimraf": "^3.0.2",
         "ts-node": "^8.6.2",
         "typescript": "^3.7.5"
