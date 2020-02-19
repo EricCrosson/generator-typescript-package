@@ -2,7 +2,7 @@ import { Debugger } from 'debug'
 
 function isDebugMode(): boolean {
     return process.env.PRODUCTION === undefined
-        || process.env.DEBUG !== undefined
+        && process.env.DEBUG !== undefined
 }
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
