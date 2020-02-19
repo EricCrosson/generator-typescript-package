@@ -246,7 +246,7 @@ Check for outdated dependencies by running:
 
 Please commit before making changes by running:
 
-    \`git add . && git commit -m 'initial commit'\`
+    \`git add . && git commit --no-verify -m 'initial commit'\`
 `)
     }
 }
