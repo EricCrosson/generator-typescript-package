@@ -47,25 +47,25 @@
     },
     "homepage": "<%= gitRepository %>",
     "devDependencies": {
-        "@types/node": "^13.7.1",
-        "@typescript-eslint/eslint-plugin": "^2.19.2",
-        "@typescript-eslint/parser": "^2.19.2",
-        "ava": "^3.3.0",
+        "@types/node": "^13.7.4",
+        "@typescript-eslint/eslint-plugin": "^2.20.0",
+        "@typescript-eslint/parser": "^2.20.0",
+        "ava": "^3.4.0",
         "ava-fast-check": "^1.1.2",
         "codecov": "^3.6.5",
         "eslint": "^6.8.0",
-        "eslint-plugin-ava": "^10.0.1",
+        "eslint-plugin-ava": "^10.2.0",
         "eslint-plugin-security": "^1.4.0",
-        "fast-check": "^1.21.0",
+        "fast-check": "^1.22.2",
         "lint-staged": "^10.0.7",
         "nyc": "^15.0.0",
         "pre-commit": "^1.2.2",
         "prettier": "1.19.1",
         "rimraf": "^3.0.2",
         "ts-node": "^8.6.2",
-        "typedoc": "^0.16.9",
+        "typedoc": "^0.16.10",
         "typedoc-plugin-markdown": "^2.2.16",
-        "typescript": "^3.7.5"
+        "typescript": "^3.8.2"
     },
     "files": [
         "dist/src/"
