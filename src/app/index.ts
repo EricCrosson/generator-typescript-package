@@ -230,20 +230,6 @@ module.exports = class extends Generator {
         const packagejson = this.destinationPath('package.json')
         const json = this.fs.readJSON(packagejson)
 
-        console.log(
-                Object.entries(json.devDependencies)
-                    .filter(([pkg, _version]) => {
-                        if (blacklistedPackages.includes(pkg)){
-                            console.log('Blacklisting package', pkg)
-                        }
-                        return !blacklistedPackages.includes(pkg)
-                    })
-                    .reduce(
-                        (acc, [pkg, version]) => Object.assign(acc, {[pkg]: version}),
-                        Object.create(null) as Record<string, string>
-                    )
-        )
-
         this.fs.extendJSON(
             packagejson,
             {
