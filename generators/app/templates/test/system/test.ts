@@ -6,7 +6,6 @@ import test from 'ava'
 
 import <%= importStatement %> from '../../src/<%= packageNameKebabCase %>'
 
-
 test.skip('TODO: system-test <%= packageNameKebabCase %>', t => {
     t.fail()
 })

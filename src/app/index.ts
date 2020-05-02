@@ -137,7 +137,7 @@ module.exports = class extends Generator {
 
     generateSimpleTemplates(): void {
         generateTemplate('dot_eslintignore')
-        generateTemplate('dot_eslintrc.js')
+        generateTemplate('dot_eslintrc.json')
         generateTemplate('dot_prettierrc.json')
         generateTemplate('package_dot_json')
         generateTemplate('readme.md')
@@ -222,12 +222,73 @@ module.exports = class extends Generator {
             return
         }
 
+        const blacklistedPackages = [
+            "eslint-plugin-ava",
+            "eslint-plugin-security"
+        ]
+
+        const packagejson = this.destinationPath('package.json')
+        const json = this.fs.readJSON(packagejson)
+
+        console.log(
+                Object.entries(json.devDependencies)
+                    .filter(([pkg, _version]) => {
+                        if (blacklistedPackages.includes(pkg)){
+                            console.log('Blacklisting package', pkg)
+                        }
+                        return !blacklistedPackages.includes(pkg)
+                    })
+                    .reduce(
+                        (acc, [pkg, version]) => Object.assign(acc, {[pkg]: version}),
+                        Object.create(null) as Record<string, string>
+                    )
+        )
+
         this.fs.extendJSON(
-            this.destinationPath('package.json'),
+            packagejson,
             {
                 scripts: {
                     compile: 'tsc -b .'
                 }
+            }
+        )
+
+        /* some stupid workaround */
+        this.fs.extendJSON(packagejson, {devDependencies: []})
+        this.fs.extendJSON(
+            packagejson,
+            {
+                devDependencies: Object.entries(json.devDependencies)
+                    .filter(([pkg, _version]) => !blacklistedPackages.includes(pkg))
+                    .reduce(
+                        (acc, [pkg, version]) => Object.assign(acc, {[pkg]: version}),
+                        Object.create(null) as Record<string, string>
+                    )
+            }
+        )
+    }
+
+    customizeEslintRcJson(): void {
+        if (!this.options.lerna) {
+            return
+        }
+
+        const blacklistedConfigs = [
+            "plugin:security/recommended",
+            "plugin:ava/recommended"
+        ]
+
+        const eslintrc = this.destinationPath('.eslintrc.json')
+        const json = this.fs.readJSON(eslintrc)
+
+        this.fs.extendJSON(
+            eslintrc,
+            {
+                plugins: [
+                    "@typescript-eslint"
+                ],
+                extends: json.extends
+                    .filter((config: string) => !blacklistedConfigs.includes(config))
             }
         )
     }
