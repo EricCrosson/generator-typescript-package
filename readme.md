@@ -21,8 +21,7 @@
 - supports [scoped] npm packages
 - supports [github]
 - supports [gitlab]
-- supports [lerna] mono-repos
-- support documentation generation with [typedoc]
+- supports [lerna] monorepos
 - continuous integration ([travis-ci]/[gitlab-ci])
 - runs tests in parallel with [ava]
 - property-testing with [fast-check]
@@ -38,7 +37,6 @@
 [github]: https://github.com
 [gitlab]: https://gitlab.com
 [lerna]: https://github.com/lerna/lerna
-[typedoc]: https://typedoc.org
 [ava]: https://github.com/avajs/ava
 [fast-check]: https://github.com/dubzzz/fast-check
 [travis-ci]: https://travis-ci.org
@@ -149,3 +147,6 @@ A workflow leveraging this auto-publication could then resemble:
 [travis.yml]: /generators/app/templates/dot_travis.yml
 [define the variable]: https://docs.travis-ci.com/user/environment-variables/#defining-variables-in-repository-settings
 [automatically deploy]: https://docs.travis-ci.com/user/deployment/npm/
+
+<!--  LocalWords:  monorepos
+ -->
