@@ -1,5 +1,5 @@
 ---
-image: node:12.16.0-alpine
+image: node:14-alpine
 
 stages:
   - lint
