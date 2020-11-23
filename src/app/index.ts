@@ -141,7 +141,6 @@ module.exports = class extends Generator {
         generateTemplate('dot_prettierrc.json')
         generateTemplate('package_dot_json')
         generateTemplate('readme.md')
-        generateTemplate('typedoc.js')
 
         generateTemplate('src/src.ts', `src/${userInput.packageNameKebabCase}.ts`)
         generateTemplate('test/unit/test.ts', `test/unit/test-${userInput.packageNameKebabCase}.ts`)
