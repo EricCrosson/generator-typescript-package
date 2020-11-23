@@ -7,3 +7,5 @@ flycheck_*
 # compiled files
 /generators/*.js
 /generators/app/*.js
+/generators/src
+/generators/test
