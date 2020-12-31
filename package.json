@@ -4,8 +4,8 @@
     "description": "Yet another Yeoman generator for TypeScript packages",
     "main": "app/index.js",
     "scripts": {
-        "prepublishOnly": "npm run clean && npm run compile",
-        "compile": "tsc",
+        "prepublishOnly": "npm run clean && npm run build",
+        "build": "tsc",
         "clean": "rimraf generators/*.js generators/app/*.js",
         "ava": "ava -v",
         "ava:fail-fast": "ava -v --fail-fast",
