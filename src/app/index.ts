@@ -36,14 +36,16 @@ module.exports = class extends Generator {
             'lerna',
             {
                 description: `The generated package will be incorporated into a lerna monoepo`,
-                default: false
+                default: false,
+                type: Boolean
             }
         )
         this.option(
             'default',
             {
                 description: 'The generated package will use a `default` export',
-                default: false
+                default: false,
+                type: Boolean
             }
         )
     }
@@ -227,7 +229,8 @@ module.exports = class extends Generator {
         ]
 
         const packagejson = this.destinationPath('package.json')
-        const json = this.fs.readJSON(packagejson)
+        // FIXME: remove type assertion
+        const json = this.fs.readJSON(packagejson) as any
 
         this.fs.extendJSON(
             packagejson,
@@ -264,7 +267,8 @@ module.exports = class extends Generator {
         ]
 
         const eslintrc = this.destinationPath('.eslintrc.json')
-        const json = this.fs.readJSON(eslintrc)
+        // FIXME: remove type assertion
+        const json = this.fs.readJSON(eslintrc) as any
 
         this.fs.extendJSON(
             eslintrc,
