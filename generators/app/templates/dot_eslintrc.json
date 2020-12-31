@@ -10,11 +10,6 @@
         "@typescript-eslint/no-unnecessary-type-assertion": [
             "warn"
         ],
-        "@typescript-eslint/interface-name-prefix": [
-            "warn",
-            "never"
-        ],
-        "@typescript-eslint/adjacent-overload-signatures": "warn",
         "@typescript-eslint/require-array-sort-compare": "error",
         "@typescript-eslint/promise-function-async": [
             "error"
@@ -27,7 +22,7 @@
             "error"
         ],
         "@typescript-eslint/no-explicit-any": "error",
-        "@typescript-eslint/ban-ts-ignore": "error",
+        "@typescript-eslint/ban-ts-comment": "error",
         "@typescript-eslint/await-thenable": "error",
         "no-extra-parens": "off",
         "@typescript-eslint/no-unused-vars": [
