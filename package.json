@@ -58,6 +58,7 @@
         "ava": "^3.14.0",
         "codecov": "^3.8.1",
         "debug": "^4.3.1",
+        "ejs-lint": "^1.1.0",
         "eslint": "^7.16.0",
         "eslint-plugin-ava": "^11.0.0",
         "eslint-plugin-security": "^1.4.0",

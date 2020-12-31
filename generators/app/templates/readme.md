@@ -7,7 +7,7 @@
 <%=licenseBadge%>
 [NPM Package]: https://img.shields.io/npm/v/<%=scopedPackageName%>.svg
 [Build status]: https://travis-ci.org/<%=gitGroup%>/<%=packageNameKebabCase%>.svg?branch=master
-[Code Coverage]: https://codecov.io/gh/<%=gitGroup%>/<%=packageNameKebabCase%>/branch/master/graph/badge.svg
+[Code Coverage]: https://codecov.io/gh/<%=gitGroup%>/<%=packageNameKebabCase%>/branch/master/graph/badge.svg<% } %>
 
 > <%- tagline %>
 
