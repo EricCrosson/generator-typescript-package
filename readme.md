@@ -22,7 +22,6 @@
 - supports [github]
 - supports [gitlab]
 - supports [lerna] mono-repos
-- support documentation generation with [typedoc]
 - continuous integration ([travis-ci]/[gitlab-ci])
 - runs tests in parallel with [ava]
 - property-testing with [fast-check]
@@ -38,7 +37,6 @@
 [github]: https://github.com
 [gitlab]: https://gitlab.com
 [lerna]: https://github.com/lerna/lerna
-[typedoc]: https://typedoc.org
 [ava]: https://github.com/avajs/ava
 [fast-check]: https://github.com/dubzzz/fast-check
 [travis-ci]: https://travis-ci.org

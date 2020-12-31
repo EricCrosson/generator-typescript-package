@@ -26,8 +26,7 @@
         "watch:lint": "nodemon -e 'ts js json' -x 'npm run lint || true'",
         "test": "nyc ava",
         "watch:test": "nodemon -e 'ts json' -x 'npm test || true'",
-        "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
-        "typedoc": "typedoc"
+        "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
     },
     "lint-staged": {
         "*.ts": [
@@ -63,8 +62,6 @@
         "prettier": "1.19.1",
         "rimraf": "^3.0.2",
         "ts-node": "^8.6.2",
-        "typedoc": "^0.16.10",
-        "typedoc-plugin-markdown": "^2.2.16",
         "typescript": "^3.8.2"
     },
     "files": [
