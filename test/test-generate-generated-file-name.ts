@@ -31,7 +31,7 @@ shouldGenerateFileName.title = function title(
  * Test cases
  ********************************************************************/
 
-test(shouldGenerateFileName, 'readme.md', 'readme.md')
+test(shouldGenerateFileName, 'README.md', 'README.md')
 
 test(shouldGenerateFileName, 'dot_eslintrc.js', '.eslintrc.js')
 test(shouldGenerateFileName, 'dot_eslintignore', '.eslintignore')

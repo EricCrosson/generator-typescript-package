@@ -142,7 +142,7 @@ module.exports = class extends Generator {
         generateTemplate('dot_eslintrc.json')
         generateTemplate('dot_prettierrc.json')
         generateTemplate('package_dot_json')
-        generateTemplate('readme.md')
+        generateTemplate('README.md')
 
         generateTemplate('src/src.ts', `src/${userInput.packageNameKebabCase}.ts`)
         generateTemplate('test/unit/test.ts', `test/unit/test-${userInput.packageNameKebabCase}.ts`)
