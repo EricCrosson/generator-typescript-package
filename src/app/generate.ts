@@ -1,19 +1,15 @@
 import Generator from 'yeoman-generator'
 import D from 'od'
-import camelCase from 'camelcase'
-import { now } from '../date'
+import { camelCase } from 'change-case'
 import { UserInput } from './user-input'
 import { licenseBadgeMarkdown } from './licenses'
 
 export type Path = string
 
-
 export function generator(
     generator: Generator,
     userInput: UserInput
 ): (template: Path, destination?: Path) => void {
-
-    const [licenseLink, licenseBadge] = licenseBadgeMarkdown(userInput.license)
 
     return function generate(
         template: Path,
@@ -30,28 +26,22 @@ export function generator(
             {
                 ...userInput,
 
-                licenseLink: licenseLink,
-                licenseBadge: licenseBadge,
+                ...licenseBadgeMarkdown(userInput.license),
 
-                dateYear: D.get('year', now()),
+                dateYear: D.get('year', new Date()),
 
                 exportStatement: generator.options.default
                     ? 'export default'
                     : 'export',
                 importStatement: generator.options.default
                     ? camelCase(userInput.packageNameKebabCase)
-                    : ['{', camelCase(userInput.packageNameKebabCase), '}'].join(' '),
-
-                npmInstallFrom: userInput.license === 'SEE LICENSE IN <LICENSE>'
-                    ? `git+ssh://git@${userInput.gitHost}/${userInput.gitGroup}/${userInput.packageNameKebabCase}`
-                    : userInput.scopedPackageName
+                    : ['{', camelCase(userInput.packageNameKebabCase), '}'].join(' ')
             }
         )
     }
 }
 
 export function generatedFileName(templateFileName: string): string {
-
     return templateFileName
         .replace(/^.*\//, '')
         .replace(/_dot_/g, '.')

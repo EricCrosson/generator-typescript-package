@@ -1,20 +1,20 @@
 import { Maybe } from 'purify-ts'
-import { memoize } from '../memoize'
+import { memoize } from '@strong-roots-capital/memoize'
 import gitConfigPath from 'git-config-path'
 import parse, { Config as GitConfig } from 'parse-git-config'
 import parseGithubUrl from 'parse-github-url'
+import findUp from 'find-up'
 
-
-function _globalGitConfig(): GitConfig {
+function globalGitConfig_(): GitConfig {
     return parse.sync({path: gitConfigPath('global')})
 }
-export const globalGitConfig = memoize(_globalGitConfig)
+export const globalGitConfig = memoize (1) (globalGitConfig_)
 
-function _localGitConfig(root: string): GitConfig {
-    return parse.sync({cwd: root})
+function localGitConfig_(root: string): Maybe<GitConfig> {
+    return Maybe.fromNullable(findUp.sync('.git/config', { cwd: root }))
+        .map(path => parse.sync({ path }))
 }
-export const localGitConfig = memoize(_localGitConfig)
-
+export const localGitConfig = memoize (1) (localGitConfig_)
 
 export function gitUsername(config: GitConfig): Maybe<string> {
     const githubUsername = Maybe
@@ -48,8 +48,9 @@ export function scopedPackageName(
 }
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-export function gitRemote(config: GitConfig): Maybe<string> {
-    return Maybe.fromNullable(config['remote "origin"'])
+export function gitRemote(config: Maybe<GitConfig>): Maybe<string> {
+    return config
+        .chainNullable(config => config['remote "origin"'])
         .chainNullable(origin => origin.url)
         .map(url => parseGithubUrl(url))
         .map((parsed: any) => [

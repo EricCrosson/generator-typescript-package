@@ -2,49 +2,46 @@
     "name": "<%= scopedPackageName %>",
     "version": "<%= version %>",
     "description": "<%- tagline %>",
-    "main": "dist/src/<%= packageNameKebabCase %>.js",
-    "types": "dist/src/<%= packageNameKebabCase %>.d.ts",
+    "homepage": "<%= gitRepository %>",
+    "bugs": {
+        "url": "<%= gitRepository %>/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+<%= gitRepository %>.git"
+    },
+    "license": "<%- license %>",
+    "author": "<%= author %> <<%= email %>> (https://<%= gitHost %>/<%= gitUsername %>)",
+    "main": "dist/src/index.js",
+    "types": "dist/src/index.d.ts",
+    "files": [
+        "dist/src/"
+    ],
     "scripts": {
         "prepublishOnly": "npm run clean && npm run compile",
-        "compile": "tsc",
-        "watch:compile": "nodemon -e 'ts json' -x 'npm run compile || true'",
-        "clean": "rimraf --no-glob dist",
-        "lint-staged": "lint-staged",
         "ava": "ava -v",
-        "ava:fail-fast": "ava -v --fail-fast",
-        "ava:serial": "ava -v -s",
-        "watch:ava": "nodemon -e 'ts json' -x 'npm run ava || true'",
-        "watch:ava:fail-fast": "nodemon -e 'ts json' -x 'npm run ava:fail-fast || true'",
-        "watch:ava:serial": "nodemon -e 'ts json' -x 'npm run ava:serial || true'",
-        "watch:ava:bell": "nodemon -e 'ts json' -x 'npm run ava || echo -e \\\\a'",
-        "watch:ava:fail-fast:bell": "nodemon -e 'ts json' -x 'npm run ava:fail-fast || echo -e \\\\a'",
-        "watch:ava:serial:bell": "nodemon -e 'ts json' -x 'npm run ava:serial || echo -e \\\\a'",
+        "clean": "rimraf --no-glob dist",
+        "compile": "tsc",
+        "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
         "lint": "eslint --ext ts .",
         "lint:fix": "eslint --ext ts --fix .",
+        "lint-staged": "lint-staged",
         "prettier:check": "prettier --list-different src/**/*.ts",
         "prettier:write": "prettier --write src/**/*.ts",
-        "watch:lint": "nodemon -e 'ts js json' -x 'npm run lint || true'",
         "test": "nyc ava",
-        "watch:test": "nodemon -e 'ts json' -x 'npm test || true'",
-        "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
+        "watch:ava": "nodemon -e 'ts json' -x 'npm run ava -s -v --fail-fast || true'",
+        "watch:compile": "nodemon -e 'ts json' -x 'npm run compile || true'",
+        "watch:lint": "nodemon -e 'ts js json' -x 'npm run lint || true'",
+        "watch:test": "nodemon -e 'ts json' -x 'npm test || true'"
     },
+    "pre-commit": "lint-staged",
     "lint-staged": {
         "*.ts": [
             "eslint --fix",
             "prettier --write"
         ]
     },
-    "pre-commit": "lint-staged",
-    "repository": {
-        "type": "git",
-        "url": "git+<%= gitRepository %>.git"
-    },
-    "author": "<%= author %> <<%= email %>> (https://<%= gitHost %>/<%= gitUsername %>)",
-    "license": "<%- license %>",
-    "bugs": {
-        "url": "<%= gitRepository %>/issues"
-    },
-    "homepage": "<%= gitRepository %>",
+    "dependencies": {},
     "devDependencies": {
         "@types/node": "^14.14.17",
         "@typescript-eslint/eslint-plugin": "^4.11.1",
@@ -64,27 +61,24 @@
         "ts-node": "^9.1.1",
         "typescript": "^4.1.3"
     },
-    "files": [
-        "dist/src/"
-    ],
     "ava": {
+        "extensions": [
+            "ts"
+        ],
         "files": [
             "!dist/**/*.d.ts",
             "test/**/test-*.ts"
-        ],
-        "extensions": [
-            "ts"
         ],
         "require": [
             "ts-node/register"
         ]
     },
     "nyc": {
-        "include": [
-            "src/*.ts"
-        ],
         "extension": [
             ".ts"
+        ],
+        "include": [
+            "src/*.ts"
         ],
         "require": [
             "ts-node/register"

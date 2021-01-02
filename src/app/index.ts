@@ -1,12 +1,12 @@
 import * as os from 'os'
 import * as path from 'path'
-import camelCase from 'camelcase'
+import * as t from 'io-ts'
 import Generator from 'yeoman-generator'
+import { decodeDocopt, withEncode } from 'io-ts-docopt'
+import { camelCase, paramCase } from 'change-case'
 
-import { isNonEmptyString } from '../fp'
 import { UserInput } from './user-input'
 import { Path, generator } from './generate'
-import { parseCommandLineOptions } from './parse'
 import {
     scopedPackageName,
     gitRepositoryWithoutSuffix,
@@ -24,6 +24,23 @@ import {
     supportedLicenses
 } from './licenses'
 
+const docstring = `
+Usage:
+    yo typescript-package [--lerna] [--bin]
+`
+
+const CommandLineOptions = withEncode(
+    t.type({
+        '--lerna': t.boolean,
+        '--bin': t.boolean,
+    }),
+    a => ({
+        lerna: a['--lerna'],
+        bin: a['--bin'],
+    })
+)
+
+type CommandLineOptions = (typeof CommandLineOptions)['_O'];
 
 let userInput: UserInput
 let generateTemplate: (template: Path, destination?: Path) => void;
@@ -41,9 +58,9 @@ module.exports = class extends Generator {
             }
         )
         this.option(
-            'default',
+            'bin',
             {
-                description: 'The generated package will use a `default` export',
+                description: `Provide a bin target to index.ts`,
                 default: false,
                 type: Boolean
             }
@@ -51,7 +68,9 @@ module.exports = class extends Generator {
     }
 
     initializing(): void {
-        parseCommandLineOptions()
+        // Used for side-effects, throws if unsatisfied.
+        // Yeoman provides access to these options
+        decodeDocopt(CommandLineOptions, docstring)
     }
 
     async prompting(): Promise<void> {
@@ -67,7 +86,7 @@ module.exports = class extends Generator {
                     type: 'input',
                     name: 'packageNameKebabCase',
                     message: 'Your package name (no word-breaks)',
-                    default: path.basename(this.appname.replace(/ /g, '-'))  // defaults to current folder name
+                    default: paramCase(path.basename(this.appname))  // defaults to current folder name
                 }, {
                     type: 'input',
                     name: 'tagline',
@@ -123,8 +142,10 @@ module.exports = class extends Generator {
             userInput = {
                 ...answers,
 
+                bin: this.options.bin,
+
                 gitRepository: gitRepositoryWithoutSuffix(answers.gitRepository),
-                keywords: answers.keywords.split(/\s+/).filter(isNonEmptyString),
+                keywords: answers.keywords.split(/\s+/).filter((str: string) => str.length > 0),
 
                 scopedPackageName: scopedPackageName(answers.scope, answers.packageNameKebabCase),
                 packageNameCamelCase: camelCase(answers.packageNameKebabCase),
@@ -144,7 +165,7 @@ module.exports = class extends Generator {
         generateTemplate('package_dot_json')
         generateTemplate('README.md')
 
-        generateTemplate('src/src.ts', `src/${userInput.packageNameKebabCase}.ts`)
+        generateTemplate('src/index.ts', `src/index.ts`)
         generateTemplate('test/unit/test.ts', `test/unit/test-${userInput.packageNameKebabCase}.ts`)
         generateTemplate('test/system/test.ts', `test/system/test-${userInput.packageNameKebabCase}.ts`)
         generateTemplate('test/property/test.ts', `test/property/test-${userInput.packageNameKebabCase}.ts`)
@@ -155,6 +176,8 @@ module.exports = class extends Generator {
             generateTemplate('tsconfig.json')
             generateTemplate('dot_gitignore')
         }
+
+        generateTemplate('licenses/' + userInput.license.toLowerCase(), 'LICENSE')
     }
 
     generateGitForgeCiFile(): void {
@@ -171,12 +194,6 @@ module.exports = class extends Generator {
             case 'gitlab.com':
                 generateTemplate('dot_gitlab-ci.yml')
                 break
-        }
-    }
-
-    generateLicense(): void {
-        if (userInput.license === proprietaryLicense) {
-            generateTemplate('LICENSE')
         }
     }
 
@@ -218,6 +235,19 @@ module.exports = class extends Generator {
         }
     }
 
+    addBinTarget(): void {
+        if (this.options.bin) {
+            this.fs.extendJSON(
+                this.destinationPath('package.json'),
+                {
+                    bin: {
+                        [userInput.packageNameKebabCase]: './dist/src/index.js'
+                    }
+                }
+            )
+        }
+    }
+
     customizeLernaPackageJson(): void {
         if (!this.options.lerna) {
             return
@@ -236,7 +266,7 @@ module.exports = class extends Generator {
             packagejson,
             {
                 scripts: {
-                    compile: 'tsc -b .'
+                    compile: 'tsc --build --incremental .'
                 }
             }
         )

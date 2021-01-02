@@ -17,6 +17,7 @@
         "sourceMap": true,
         "strict": true,
         "noImplicitReturns": true,
+        "noUncheckedIndexedAccess": true,
         "downlevelIteration": true,
         "esModuleInterop": true,
         "resolveJsonModule": true,
