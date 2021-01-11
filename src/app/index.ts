@@ -266,6 +266,7 @@ module.exports = class extends Generator {
             packagejson,
             {
                 scripts: {
+                    prepublishOnly: "npm run compile",
                     compile: 'tsc --build --incremental .'
                 }
             }
