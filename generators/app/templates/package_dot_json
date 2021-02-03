@@ -29,7 +29,7 @@
         "lint-staged": "lint-staged",
         "prettier:check": "prettier --list-different src/**/*.ts",
         "prettier:write": "prettier --write src/**/*.ts",
-        "test": "nyc ava",
+        "test": "nyc ava && npm run docs",
         "watch:ava": "nodemon -e 'ts json' -x 'npm run ava -- -s -v --fail-fast || true'",
         "watch:compile": "nodemon -e 'ts json' -x 'npm run compile || true'",
         "watch:lint": "nodemon -e 'ts js json' -x 'npm run lint || true'",
