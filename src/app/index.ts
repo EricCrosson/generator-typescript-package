@@ -40,8 +40,6 @@ const CommandLineOptions = withEncode(
     })
 )
 
-type CommandLineOptions = (typeof CommandLineOptions)['_O'];
-
 let userInput: UserInput
 let generateTemplate: (template: Path, destination?: Path) => void;
 
