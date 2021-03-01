@@ -1,5 +1,5 @@
 import anyTest, { TestInterface } from 'ava'
-import { Nothing } from 'purify-ts'
+import { Nothing, Just } from 'purify-ts'
 import parse, { Config }from 'parse-git-config'
 
 /**
@@ -23,7 +23,7 @@ test.before(t => {
 test('should extract git full-name', t => {
     t.is(
         'https://gitlab.com/EricCrosson/generator-typescript-package',
-        gitRemote(t.context.config).extract()
+        gitRemote(Just(t.context.config)).extract()
     )
 })
 
