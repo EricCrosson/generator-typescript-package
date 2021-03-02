@@ -6,7 +6,7 @@ import parseGithubUrl from 'parse-github-url'
 import findUp from 'find-up'
 
 function globalGitConfig_(): GitConfig {
-    return parse.sync({path: gitConfigPath('global')})
+    return parse.sync({path: gitConfigPath('global') ?? undefined})
 }
 export const globalGitConfig = memoize (1) (globalGitConfig_)
 
