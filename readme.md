@@ -57,7 +57,7 @@ Create a directory for the new package, `cd` inside and generate the
 package skeleton with
 
 ``` shell
-yo typescript-package [--lerna] [--default]
+yo typescript-package [--lerna] [--bin]
 git commit -m 'Initial commit'
 ```
 
@@ -75,14 +75,13 @@ be built with TypeScript 3.0's [build] mode.
 [lerna]: https://github.com/RyanCavanaugh/learn-a
 [build]: https://devblogs.microsoft.com/typescript/announcing-typescript-3-0/
 
-#### default
+#### bin
 
 > default: false
 
-Create a package with a single [default]-export, as opposed to a
-named-export.
+Define an [executable file] under the `bin` section in the `package.json`.
 
-[default]: https://www.typescriptlang.org/docs/handbook/modules.html
+[executable file]: https://docs.npmjs.com/cli/v7/configuring-npm/package-json#bin
 
 ## Test
 
