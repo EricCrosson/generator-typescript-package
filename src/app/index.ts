@@ -265,7 +265,7 @@ module.exports = class extends Generator {
             {
                 scripts: {
                     prepublishOnly: "npm run compile",
-                    compile: 'tsc --build --incremental .'
+                    compile: 'tsc --build --incremental --verbose .'
                 }
             }
         )
