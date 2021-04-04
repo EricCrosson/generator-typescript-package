@@ -10,15 +10,16 @@ testProp.skip(
     'TODO: property-test <%= packageNameKebabCase %>',
     [
         // arbitraries
-        fc.nat()
+        fc.nat(),
     ],
     (
         t,
         // test arguments
-        natural
+        natural,
     ) => {
         // ava test here
-    }, {
+    },
+    {
         verbose: true,
-    }
+    },
 )
