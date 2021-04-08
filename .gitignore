@@ -3,6 +3,8 @@
 node_modules/
 flycheck_*
 .nyc_output/
+.tmp/
+.mkdkr
 
 # compiled files
 /generators/*.js

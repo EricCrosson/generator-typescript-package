@@ -1,0 +1,46 @@
+# pipeline autogen by mkdkr_exporter
+# https://gitlab.com/rosiney.gp/mkdkr_exporter
+
+name: CI
+
+on: [push]
+
+jobs:
+  lint:
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v1
+    - name: lint
+      run: make lint
+  test_node_10:
+    runs-on: ubuntu-18.04
+    needs:
+      - lint
+    steps:
+    - uses: actions/checkout@v1
+    - name: test node_10
+      run: make test_10
+  test_node_11:
+    runs-on: ubuntu-18.04
+    needs:
+      - lint
+    steps:
+    - uses: actions/checkout@v1
+    - name: test node_11
+      run: make test_11
+  test_node_12:
+    runs-on: ubuntu-18.04
+    needs:
+      - lint
+    steps:
+    - uses: actions/checkout@v1
+    - name: test node_12
+      run: make test_12
+  test_node_lts:
+    runs-on: ubuntu-18.04
+    needs:
+      - lint
+    steps:
+    - uses: actions/checkout@v1
+    - name: test node_lts
+      run: make test_lts
