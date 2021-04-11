@@ -13,27 +13,27 @@ function mockDebugger(tag: string): Debugger {
         format,
         {
             color: {
-                value: ''
+                value: '',
             },
             enabled: {
-                value: false
+                value: false,
             },
             log: {
-                value: function log(..._args: any[]) {return false}
+                value: function log(..._args: any[]) {return false},
             },
             namespace: {
-                value: tag
+                value: tag,
             },
             destroy: {
-                value: () => true
+                value: () => true,
             },
             extend: {
                 value: function extend(namespace: string, delimiter?: string) {
-                    return mockDebugger([tag, namespace].join(delimiter || ':'))
-                }
+                    return mockDebugger([tag, namespace].join(delimiter ?? ':'))
+                },
 
-            }
-        }
+            },
+        },
     )
     return format as Debugger
 }

@@ -40,7 +40,7 @@ export function gitEmail(config: GitConfig): Maybe<string> {
 
 export function scopedPackageName(
     scope: string,
-    packageNameKebabCase: string
+    packageNameKebabCase: string,
 ): string {
     return scope.length > 0
         ? `@${scope}/${packageNameKebabCase}`.replace(/^@+/, '@')
@@ -57,7 +57,7 @@ export function gitRemote(config: Maybe<GitConfig>): Maybe<string> {
             'https://',
             parsed.host,
             '/',
-            parsed.repo
+            parsed.repo,
         ].join(''))
 }
 /* eslint-enable @typescript-eslint/no-explicit-any */

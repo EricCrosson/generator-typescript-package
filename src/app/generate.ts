@@ -6,14 +6,21 @@ import { licenseBadgeMarkdown } from './licenses'
 
 export type Path = string
 
+export function generatedFileName(templateFileName: string): string {
+    return templateFileName
+        .replace(/^.*\//, '')
+        .replace(/_dot_/g, '.')
+        .replace(/dot_/g, '.')
+}
+
 export function generator(
     generator: Generator,
-    userInput: UserInput
+    userInput: UserInput,
 ): (template: Path, destination?: Path) => void {
 
     return function generate(
         template: Path,
-        destination?: Path
+        destination?: Path,
     ) {
 
         if (destination === undefined) {
@@ -35,15 +42,8 @@ export function generator(
                     : 'export',
                 importStatement: generator.options.default
                     ? camelCase(userInput.packageNameKebabCase)
-                    : ['{', camelCase(userInput.packageNameKebabCase), '}'].join(' ')
-            }
+                    : ['{', camelCase(userInput.packageNameKebabCase), '}'].join(' '),
+            },
         )
     }
-}
-
-export function generatedFileName(templateFileName: string): string {
-    return templateFileName
-        .replace(/^.*\//, '')
-        .replace(/_dot_/g, '.')
-        .replace(/dot_/g, '.')
 }

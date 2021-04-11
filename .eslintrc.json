@@ -1,0 +1,14 @@
+{
+    "extends": [
+        "@ericcrosson/eslint-config"
+    ],
+    "rules": {
+        "@typescript-eslint/strict-boolean-expressions": "off"
+    },
+    "parserOptions": {
+        "sourceType": "module",
+        "ecmaVersion": 2018,
+        "project": "./tsconfig.json"
+    },
+    "parser": "@typescript-eslint/parser"
+}

@@ -17,11 +17,11 @@ import {
     gitEmail,
     gitRemote,
     globalGitConfig,
-    localGitConfig
+    localGitConfig,
 } from './input'
 import {
     proprietaryLicense,
-    supportedLicenses
+    supportedLicenses,
 } from './licenses'
 
 const docstring = `
@@ -37,7 +37,7 @@ const CommandLineOptions = withEncode(
     a => ({
         lerna: a['--lerna'],
         bin: a['--bin'],
-    })
+    }),
 )
 
 let userInput: UserInput
@@ -45,23 +45,23 @@ let generateTemplate: (template: Path, destination?: Path) => void;
 
 
 module.exports = class extends Generator {
-    constructor(args: string|string[], opts: {}) {
+    constructor(args: string|string[], opts: Generator.GeneratorOptions) {
         super(args, opts)
         this.option(
             'lerna',
             {
-                description: `The generated package will be incorporated into a lerna monoepo`,
+                description: 'The generated package will be incorporated into a lerna monoepo',
                 default: false,
-                type: Boolean
-            }
+                type: Boolean,
+            },
         )
         this.option(
             'bin',
             {
-                description: `Provide a bin target to index.ts`,
+                description: 'Provide a bin target to index.ts',
                 default: false,
-                type: Boolean
-            }
+                type: Boolean,
+            },
         )
     }
 
@@ -79,33 +79,33 @@ module.exports = class extends Generator {
                     name: 'scope',
                     message: 'npm scope',
                     default: '',
-                    store: true
+                    store: true,
                 }, {
                     type: 'input',
                     name: 'packageNameKebabCase',
                     message: 'Your package name (no word-breaks)',
-                    default: paramCase(path.basename(this.appname))  // defaults to current folder name
+                    default: paramCase(path.basename(this.appname)),  // defaults to current folder name
                 }, {
                     type: 'input',
                     name: 'tagline',
                     message: 'Your project tagline',
-                    default: 'Brief and fresh sentence fragment'
+                    default: 'Brief and fresh sentence fragment',
                 }, {
                     type: 'input',
                     name: 'keywords',
                     message: 'npm keywords',
-                    default: ''
+                    default: '',
                 }, {
                     type: 'list',
                     name: 'license',
                     message: 'License',
-                    choices: supportedLicenses
+                    choices: supportedLicenses,
                 }, {
                     type: 'input',
                     name: 'copyrightHolder',
                     message: 'Name of copyright holder',
                     default: gitFullName(globalGitConfig()).orDefault(''),
-                    store: true
+                    store: true,
                 }, {
                     type: 'input',
                     name: 'gitRepository',
@@ -114,28 +114,28 @@ module.exports = class extends Generator {
                     default: gitRemote(localGitConfig((this as any).contextRoot))
                         .orDefault(
                             [
-                                `https://github.com`,
+                                'https://github.com',
                                 gitUsername(globalGitConfig()).orDefault(os.userInfo().username),
-                                this.appname.replace(/ /g, '-')
-                            ].join('/')
-                        )
+                                this.appname.replace(/ /g, '-'),
+                            ].join('/'),
+                        ),
                 }, {
                     type: 'input',
                     name: 'version',
                     message: 'Initial project version',
-                    default: '0.0.1'
+                    default: '0.0.1',
                 }, {
                     type: 'input',
                     name: 'author',
                     message: 'Your name',
-                    default: gitFullName(globalGitConfig()).orDefault('')
+                    default: gitFullName(globalGitConfig()).orDefault(''),
                 }, {
                     type: 'input',
                     name: 'email',
                     message: 'Your email address',
-                    default: gitEmail(globalGitConfig()).orDefault('')
-                }
-            ]
+                    default: gitEmail(globalGitConfig()).orDefault(''),
+                },
+            ],
         ).then(answers => {
             userInput = {
                 ...answers,
@@ -149,7 +149,7 @@ module.exports = class extends Generator {
                 packageNameCamelCase: camelCase(answers.packageNameKebabCase),
                 gitHost: gitHost(answers.gitRepository).orDefault('TODO: could not determine git host'),
                 gitGroup: gitGroup(answers.gitRepository).orDefault('TODO: could not determine git group'),
-                gitUsername: gitUsername(globalGitConfig()).orDefault(os.userInfo().username)
+                gitUsername: gitUsername(globalGitConfig()).orDefault(os.userInfo().username),
             }
 
             generateTemplate = generator(this, userInput)
@@ -162,7 +162,7 @@ module.exports = class extends Generator {
         generateTemplate('package_dot_json')
         generateTemplate('README.md')
 
-        generateTemplate('src/index.ts', `src/index.ts`)
+        generateTemplate('src/index.ts', 'src/index.ts')
         generateTemplate('test/unit/test.ts', `test/unit/test-${userInput.packageNameKebabCase}.ts`)
         generateTemplate('test/system/test.ts', `test/system/test-${userInput.packageNameKebabCase}.ts`)
         generateTemplate('test/property/test.ts', `test/property/test-${userInput.packageNameKebabCase}.ts`)
@@ -200,8 +200,8 @@ module.exports = class extends Generator {
             this.fs.extendJSON(
                 this.destinationPath('package.json'),
                 {
-                    keywords: userInput.keywords
-                }
+                    keywords: userInput.keywords,
+                },
             )
         }
     }
@@ -213,8 +213,8 @@ module.exports = class extends Generator {
                 this.fs.extendJSON(
                     this.destinationPath('package.json'),
                     {
-                        private: true
-                    }
+                        private: true,
+                    },
                 )
                 break
 
@@ -224,9 +224,9 @@ module.exports = class extends Generator {
                         this.destinationPath('package.json'),
                         {
                             publishConfig: {
-                                access: 'public'
-                            }
-                        }
+                                access: 'public',
+                            },
+                        },
                     )
                 }
                 break
@@ -239,9 +239,9 @@ module.exports = class extends Generator {
                 this.destinationPath('package.json'),
                 {
                     bin: {
-                        [userInput.packageNameKebabCase]: './dist/src/index.js'
-                    }
-                }
+                        [userInput.packageNameKebabCase]: './dist/src/index.js',
+                    },
+                },
             )
         }
     }
@@ -252,22 +252,23 @@ module.exports = class extends Generator {
         }
 
         const blacklistedPackages = [
-            "eslint-plugin-ava",
-            "eslint-plugin-security"
+            'eslint-plugin-ava',
+            'eslint-plugin-security',
         ]
 
         const packagejson = this.destinationPath('package.json')
         // FIXME: remove type assertion
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const json = this.fs.readJSON(packagejson) as any
 
         this.fs.extendJSON(
             packagejson,
             {
                 scripts: {
-                    prepublishOnly: "npm run compile",
-                    compile: 'tsc --build --incremental --verbose .'
-                }
-            }
+                    prepublishOnly: 'npm run compile',
+                    compile: 'tsc --build --incremental --verbose .',
+                },
+            },
         )
 
         /* some stupid workaround */
@@ -279,9 +280,9 @@ module.exports = class extends Generator {
                     .filter(([pkg, _version]) => !blacklistedPackages.includes(pkg))
                     .reduce(
                         (acc, [pkg, version]) => Object.assign(acc, {[pkg]: version}),
-                        Object.create(null) as Record<string, string>
-                    )
-            }
+                        Object.create(null) as Record<string, string>,
+                    ),
+            },
         )
     }
 
@@ -291,23 +292,24 @@ module.exports = class extends Generator {
         }
 
         const blacklistedConfigs = [
-            "plugin:security/recommended",
-            "plugin:ava/recommended"
+            'plugin:security/recommended',
+            'plugin:ava/recommended',
         ]
 
         const eslintrc = this.destinationPath('.eslintrc.json')
         // FIXME: remove type assertion
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const json = this.fs.readJSON(eslintrc) as any
 
         this.fs.extendJSON(
             eslintrc,
             {
                 plugins: [
-                    "@typescript-eslint"
+                    '@typescript-eslint',
                 ],
                 extends: json.extends
-                    .filter((config: string) => !blacklistedConfigs.includes(config))
-            }
+                    .filter((config: string) => !blacklistedConfigs.includes(config)),
+            },
         )
     }
 

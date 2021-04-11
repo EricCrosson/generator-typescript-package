@@ -51,6 +51,7 @@
         "yeoman-generator": "^4.12.0"
     },
     "devDependencies": {
+        "@ericcrosson/eslint-config": "^1.0.6",
         "@types/debug": "^4.1.5",
         "@types/docopt": "^0.6.31",
         "@types/git-config-path": "^2.0.0",

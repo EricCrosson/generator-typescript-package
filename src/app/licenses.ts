@@ -8,14 +8,14 @@ export const supportedLicenses = [
     'BSD-3-Clause',
     'BSD-4-Clause',
     'GPL-2.0-only',
-    'GPL-3.0-only'
+    'GPL-3.0-only',
 ] as const
 
 export type SupportedLicense = (typeof supportedLicenses)[number]
 
 export type LicenseData = {
-    licenseBadge: string,
-    licenseUrl: string,
+    licenseBadge: string
+    licenseUrl: string
 }
 
 export function licenseBadgeMarkdown(license: SupportedLicense): LicenseData {
