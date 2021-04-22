@@ -66,6 +66,9 @@
     "*.ts": [
       "prettier --write",
       "eslint --fix"
+    ],
+    "*.json": [
+      "eslint --fix"
     ]
   },
   "ava": {
