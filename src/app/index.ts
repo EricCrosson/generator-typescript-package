@@ -158,7 +158,6 @@ module.exports = class extends Generator {
 
     generateSimpleTemplates(): void {
         generateTemplate('dot_eslintignore')
-        generateTemplate('dot_eslintrc.json')
         generateTemplate('package_dot_json')
         generateTemplate('README.md')
 
@@ -171,9 +170,10 @@ module.exports = class extends Generator {
             generateTemplate('lerna/tsconfig.json')
         } else {
             generateTemplate('tsconfig.json')
+            generateTemplate('dot_eslintrc.json')
             generateTemplate('dot_gitignore')
-            generateTemplate('dot_prettierrc.json')
             generateTemplate('dot_lintstagedrc.json')
+            generateTemplate('dot_prettierrc.json')
         }
 
         generateTemplate('licenses/' + userInput.license.toLowerCase(), 'LICENSE')
