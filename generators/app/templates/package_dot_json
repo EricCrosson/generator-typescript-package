@@ -73,16 +73,5 @@
     "require": [
       "ts-node/register"
     ]
-  },
-  "nyc": {
-    "extension": [
-      ".ts"
-    ],
-    "include": [
-      "src/*.ts"
-    ],
-    "require": [
-      "ts-node/register"
-    ]
   }
 }

@@ -173,6 +173,7 @@ module.exports = class extends Generator {
             generateTemplate('dot_eslintrc.json')
             generateTemplate('dot_gitignore')
             generateTemplate('dot_lintstagedrc.json')
+            generateTemplate('dot_nycrc.json')
             generateTemplate('dot_prettierrc.json')
         }
 
