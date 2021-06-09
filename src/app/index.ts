@@ -173,6 +173,7 @@ module.exports = class extends Generator {
             generateTemplate('tsconfig.json')
             generateTemplate('dot_gitignore')
             generateTemplate('dot_prettierrc.json')
+            generateTemplate('dot_lintstagedrc.json')
         }
 
         generateTemplate('licenses/' + userInput.license.toLowerCase(), 'LICENSE')
@@ -334,4 +335,4 @@ Please commit before making changes by running:
 
 //  LocalWords:  monoepo copyrightHolder gitRepository gitUsername
 //  LocalWords:  globalGitConfig packageNameKebabCase eslintrc travis
-//  LocalWords:  prettierrc ncu npx
+//  LocalWords:  prettierrc ncu npx lintstagedrc
