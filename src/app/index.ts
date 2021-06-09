@@ -252,15 +252,7 @@ module.exports = class extends Generator {
             return
         }
 
-        const blacklistedPackages = [
-            'eslint-plugin-ava',
-            'eslint-plugin-security',
-        ]
-
         const packagejson = this.destinationPath('package.json')
-        // FIXME: remove type assertion
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const json = this.fs.readJSON(packagejson) as any
 
         this.fs.extendJSON(
             packagejson,
@@ -269,20 +261,6 @@ module.exports = class extends Generator {
                     prepublishOnly: 'npm run compile',
                     compile: 'tsc --build --incremental --verbose .',
                 },
-            },
-        )
-
-        /* some stupid workaround */
-        this.fs.extendJSON(packagejson, {devDependencies: []})
-        this.fs.extendJSON(
-            packagejson,
-            {
-                devDependencies: Object.entries(json.devDependencies)
-                    .filter(([pkg, _version]) => !blacklistedPackages.includes(pkg))
-                    .reduce(
-                        (acc, [pkg, version]) => Object.assign(acc, {[pkg]: version}),
-                        Object.create(null) as Record<string, string>,
-                    ),
             },
         )
     }
