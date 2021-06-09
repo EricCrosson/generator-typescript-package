@@ -157,7 +157,6 @@ module.exports = class extends Generator {
     }
 
     generateSimpleTemplates(): void {
-        generateTemplate('dot_eslintignore')
         generateTemplate('package_dot_json')
         generateTemplate('README.md')
 

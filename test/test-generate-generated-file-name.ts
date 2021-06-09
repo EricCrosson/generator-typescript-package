@@ -34,7 +34,6 @@ shouldGenerateFileName.title = function title(
 test(shouldGenerateFileName, 'README.md', 'README.md')
 
 test(shouldGenerateFileName, 'dot_eslintrc.js', '.eslintrc.js')
-test(shouldGenerateFileName, 'dot_eslintignore', '.eslintignore')
 test(shouldGenerateFileName, 'dot_gitignore', '.gitignore')
 test(shouldGenerateFileName, 'dot_travis.yml', '.travis.yml')
 test(shouldGenerateFileName, 'dot_gitlab-ci.yml', '.gitlab-ci.yml')
