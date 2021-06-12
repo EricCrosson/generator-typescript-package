@@ -1,9 +1,5 @@
 import { testProp, fc } from 'ava-fast-check'
 
-/**
- * Library under test
- */
-
 import <%= importStatement %> from '../../src/index'
 
 testProp.skip(
