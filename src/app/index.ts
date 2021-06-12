@@ -265,33 +265,6 @@ module.exports = class extends Generator {
         )
     }
 
-    customizeEslintRcJson(): void {
-        if (!this.options.lerna) {
-            return
-        }
-
-        const blacklistedConfigs = [
-            'plugin:security/recommended',
-            'plugin:ava/recommended',
-        ]
-
-        const eslintrc = this.destinationPath('.eslintrc.json')
-        // FIXME: remove type assertion
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const json = this.fs.readJSON(eslintrc) as any
-
-        this.fs.extendJSON(
-            eslintrc,
-            {
-                plugins: [
-                    '@typescript-eslint',
-                ],
-                extends: json.extends
-                    .filter((config: string) => !blacklistedConfigs.includes(config)),
-            },
-        )
-    }
-
     install(): void {
         if (!this.options.lerna) {
             this.npmInstall()
