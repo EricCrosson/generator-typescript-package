@@ -23,6 +23,7 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedIndexedAccess": true,
     "noUnusedLocals": true,
+    "noImplicitOverride": true,
     "forceConsistentCasingInFileNames": true,
     "downlevelIteration": true,
     "esModuleInterop": true,
