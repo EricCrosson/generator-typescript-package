@@ -30,7 +30,7 @@
     "resolveJsonModule": true,
     "paths": {
       "*": [
-        "src/@types/*"
+        "./src/@types/*"
       ]
     }
   }
