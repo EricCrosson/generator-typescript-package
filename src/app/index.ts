@@ -174,7 +174,7 @@ module.exports = class extends Generator {
             generateTemplate('dot_lintstagedrc.json')
             generateTemplate('dot_nycrc.json')
             generateTemplate('dot_prettierrc.json')
-            generateTemplate('dot_editorconfig.json')
+            generateTemplate('dot_editorconfig')
         }
 
         generateTemplate('licenses/' + userInput.license.toLowerCase(), 'LICENSE')
