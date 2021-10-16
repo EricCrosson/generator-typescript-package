@@ -1,12 +1,11 @@
 # generator-typescript-package
 [![License][]](https://opensource.org/licenses/ISC)
-[![Build status][]](https://travis-ci.org/ericcrosson/generator-typescript-package)
+![Build Status](https://github.com/ericcrosson/generator-typescript-package/actions/workflows/ci.yml/badge.svg) 
 [![Code Coverage][]](https://codecov.io/gh/ericcrosson/generator-typescript-package)
 [![NPM Package][]](https://npmjs.org/package/generator-typescript-package)
 [![NPM Downloads][]](https://www.npmjs.com/package/generator-typescript-package)
 
 [License]: https://img.shields.io/badge/License-ISC-blue.svg
-[Build status]: https://travis-ci.org/ericcrosson/generator-typescript-package.svg?branch=master
 [Code Coverage]: https://codecov.io/gh/ericcrosson/generator-typescript-package/branch/master/graph/badge.svg
 [NPM Package]: https://img.shields.io/npm/v/generator-typescript-package.svg
 [NPM Downloads]: https://img.shields.io/npm/dt/generator-typescript-package.svg
@@ -19,10 +18,10 @@
 ## Features
 
 - supports [scoped] npm packages
-- supports [github]
+- supports [GitHub]
 - supports [gitlab]
 - supports [lerna] mono-repos
-- continuous integration ([travis-ci]/[gitlab-ci])
+- continuous integration ([GitHub Actions]/[gitlab-ci])
 - runs tests in parallel with [ava]
 - property-testing with [fast-check]
 - code coverage ([codecov])
@@ -34,12 +33,12 @@
 > development-environments
 
 [scoped]: https://docs.npmjs.com/about-scopes
-[github]: https://github.com
+[GitHub]: https://github.com
 [gitlab]: https://gitlab.com
 [lerna]: https://github.com/lerna/lerna
 [ava]: https://github.com/avajs/ava
 [fast-check]: https://github.com/dubzzz/fast-check
-[travis-ci]: https://travis-ci.org
+[GitHub Actions]: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs-or-python
 [gitlab-ci]: https://docs.gitlab.com/ee/ci/
 [codecov]: https://codecov.io
 [typescript-eslint]: https://github.com/typescript-eslint/typescript-eslint
@@ -91,58 +90,8 @@ Test the generated package
 npm test
 ```
 
-Or use watch-mode and run tests when files are modified
-
-``` typescript
-npm run watch:ava
-npm run watch:ava:fail-fast  # stops printing on first test-failure
-```
-
 ## Configuring Integrations
 
-### Travis CI
+Under construction
 
-> Supports: GitHub repositories
-
-Just [enable] Travis CI for your new github repository and on each push
-ci will run automatically.
-
-[enable]: https://travis-ci.org/account/repositories
-
-### Travis CI Deploys to NPM
-
-> Supports: GitHub repositories
-
-The generated [travis.yml] file will [automatically deploy] your package to NPM,
-if configured with an NPM auth-token, on builds meeting the following criteria:
-
-- travis-ci is building a commit to the master branch
-- the commit includes a git tag (which is added automatically by `npm version`)
-- travis-ci is not building a pull-request commit
-- travis-ci environment variable `NPM_TOKEN` has been defined
-
-All you have to do to enable this feature is [define the variable]
-`NPM_TOKEN` in Travis CI's repository settings. You can determine
-your NPM auth-token with the following shell command
-
-```sh
-cat ~/.npmrc | grep _authToken | cut -d'=' -f2
-```
-
-> Note: `~/.npmrc` is created by the `npm login` command
-
-A workflow leveraging this auto-publication could then resemble:
-
-1. develop changes on a feature-branch
-2. commit changes
-3. use `npm version` to bump version
-4. push feature-branch
-5. open a pull-request to master
-6. approve the pull-request after ci passes
-
-> Note: if `NPM_TOKEN` is not defined ci will skip the deploy stage without
-> breaking
-
-[travis.yml]: /generators/app/templates/dot_travis.yml
 [define the variable]: https://docs.travis-ci.com/user/environment-variables/#defining-variables-in-repository-settings
-[automatically deploy]: https://docs.travis-ci.com/user/deployment/npm/
