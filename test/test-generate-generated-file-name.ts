@@ -13,8 +13,8 @@ function shouldGenerateFileName(
     expectedGeneratedFileName: string
 ) {
     t.is(
+        generatedFileName(templateFileName),
         expectedGeneratedFileName,
-        generatedFileName(templateFileName)
     )
 }
 
@@ -35,7 +35,6 @@ test(shouldGenerateFileName, 'README.md', 'README.md')
 
 test(shouldGenerateFileName, 'dot_eslintrc.js', '.eslintrc.js')
 test(shouldGenerateFileName, 'dot_gitignore', '.gitignore')
-test(shouldGenerateFileName, 'dot_travis.yml', '.travis.yml')
 test(shouldGenerateFileName, 'dot_gitlab-ci.yml', '.gitlab-ci.yml')
 
 test(shouldGenerateFileName, 'package_dot_json', 'package.json')
@@ -43,4 +42,4 @@ test(shouldGenerateFileName, 'package_dot_json', 'package.json')
 test(shouldGenerateFileName, 'tsconfig.json', 'tsconfig.json')
 test(shouldGenerateFileName, 'lerna/tsconfig.json', 'tsconfig.json')
 
-//  LocalWords:  eslintrc travis
+//  LocalWords:  eslintrc

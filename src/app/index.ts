@@ -186,9 +186,8 @@ module.exports = class extends Generator {
         }
 
         switch (userInput.gitHost) {
-
             case 'github.com':
-                generateTemplate('dot_travis.yml')
+                generateTemplate('dot_github/workflows/ci.yml', '.github/workflows/ci.yml')
                 break
 
             case 'gitlab.com':
@@ -259,8 +258,8 @@ module.exports = class extends Generator {
             packagejson,
             {
                 scripts: {
-                    prepublishOnly: 'npm run compile',
-                    compile: 'tsc --build --incremental --verbose .',
+                    prepublishOnly: 'npm run build',
+                    build: 'tsc --build --incremental --verbose .',
                 },
             },
         )
@@ -286,5 +285,5 @@ Please commit before making changes by running:
 }
 
 //  LocalWords:  monoepo copyrightHolder gitRepository gitUsername
-//  LocalWords:  globalGitConfig packageNameKebabCase eslintrc travis
+//  LocalWords:  globalGitConfig packageNameKebabCase eslintrc
 //  LocalWords:  prettierrc ncu npx lintstagedrc

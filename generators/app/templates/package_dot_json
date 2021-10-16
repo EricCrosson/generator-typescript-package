@@ -18,10 +18,10 @@
     "dist/src/"
   ],
   "scripts": {
-    "prepublishOnly": "npm run clean && npm run compile",
+    "prepublishOnly": "npm run clean && npm run build",
     "ava": "ava -v",
     "clean": "rimraf --no-glob dist",
-    "compile": "tsc",
+    "build": "tsc",
     "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
     "docs": "docs-ts",
     "lint": "eslint --ext ts . package.json",

@@ -1,6 +1,6 @@
 # generator-typescript-package
 [![License][]](https://opensource.org/licenses/ISC)
-![Build Status](https://github.com/ericcrosson/generator-typescript-package/actions/workflows/ci.yml/badge.svg) 
+![Build Status](https://github.com/ericcrosson/generator-typescript-package/actions/workflows/ci.yml/badge.svg)
 [![Code Coverage][]](https://codecov.io/gh/ericcrosson/generator-typescript-package)
 [![NPM Package][]](https://npmjs.org/package/generator-typescript-package)
 [![NPM Downloads][]](https://www.npmjs.com/package/generator-typescript-package)
@@ -27,7 +27,6 @@
 - code coverage ([codecov])
 - linting with [typescript-eslint]
 - publishes only compiled JavaScript to npm (no typescript sources)
-- automatic deploys to NPM [if configured]
 
 > Note: there has been no explicit compatibility testing for Windows
 > development-environments
@@ -42,7 +41,6 @@
 [gitlab-ci]: https://docs.gitlab.com/ee/ci/
 [codecov]: https://codecov.io
 [typescript-eslint]: https://github.com/typescript-eslint/typescript-eslint
-[if configured]: #Travis-CI-Deploys-to-NPM
 
 ## Install
 
@@ -93,5 +91,3 @@ npm test
 ## Configuring Integrations
 
 Under construction
-
-[define the variable]: https://docs.travis-ci.com/user/environment-variables/#defining-variables-in-repository-settings
