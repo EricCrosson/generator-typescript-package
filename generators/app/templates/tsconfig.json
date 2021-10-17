@@ -24,6 +24,7 @@
     "noUncheckedIndexedAccess": true,
     "noUnusedLocals": true,
     "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
     "forceConsistentCasingInFileNames": true,
     "downlevelIteration": true,
     "esModuleInterop": true,
