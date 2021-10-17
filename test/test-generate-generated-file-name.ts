@@ -1,46 +1,40 @@
-import test, { ExecutionContext } from 'ava'
+import test, { ExecutionContext } from "ava";
 
 /**
  * Library under test
  */
 
-import { generatedFileName } from '../src/app/generate'
-
+import { generatedFileName } from "../src/app/generate";
 
 function shouldGenerateFileName(
-    t: ExecutionContext,
-    templateFileName: string,
-    expectedGeneratedFileName: string
+  t: ExecutionContext,
+  templateFileName: string,
+  expectedGeneratedFileName: string
 ) {
-    t.is(
-        expectedGeneratedFileName,
-        generatedFileName(templateFileName)
-    )
+  t.is(generatedFileName(templateFileName), expectedGeneratedFileName);
 }
 
 shouldGenerateFileName.title = function title(
-    _providedTitle: string,
-    template: string,
-    expected: string
+  _providedTitle: string,
+  template: string,
+  expected: string
 ) {
-    return `should generate file-name ${expected} from ${template}`
-}
-
+  return `should generate file-name ${expected} from ${template}`;
+};
 
 /*********************************************************************
  * Test cases
  ********************************************************************/
 
-test(shouldGenerateFileName, 'README.md', 'README.md')
+test(shouldGenerateFileName, "README.md", "README.md");
 
-test(shouldGenerateFileName, 'dot_eslintrc.js', '.eslintrc.js')
-test(shouldGenerateFileName, 'dot_gitignore', '.gitignore')
-test(shouldGenerateFileName, 'dot_travis.yml', '.travis.yml')
-test(shouldGenerateFileName, 'dot_gitlab-ci.yml', '.gitlab-ci.yml')
+test(shouldGenerateFileName, "dot_eslintrc.js", ".eslintrc.js");
+test(shouldGenerateFileName, "dot_gitignore", ".gitignore");
+test(shouldGenerateFileName, "dot_gitlab-ci.yml", ".gitlab-ci.yml");
 
-test(shouldGenerateFileName, 'package_dot_json', 'package.json')
+test(shouldGenerateFileName, "package_dot_json", "package.json");
 
-test(shouldGenerateFileName, 'tsconfig.json', 'tsconfig.json')
-test(shouldGenerateFileName, 'lerna/tsconfig.json', 'tsconfig.json')
+test(shouldGenerateFileName, "tsconfig.json", "tsconfig.json");
+test(shouldGenerateFileName, "lerna/tsconfig.json", "tsconfig.json");
 
-//  LocalWords:  eslintrc travis
+//  LocalWords:  eslintrc
