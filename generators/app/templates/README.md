@@ -1,6 +1,6 @@
 # <%= packageNameKebabCase %><% if (gitHost.includes('github.com')) { %>
 <%= licenseBadge %>
-![Build Status](https://github.com/<%=gitGroup%>/<%=packageNameKebabCase=%>/actions/workflows/ci.yml/badge.svg)
+![Build Status](https://github.com/<%=gitGroup%>/<%=packageNameKebabCase%>/actions/workflows/ci.yml/badge.svg)
 [![NPM Package][]](https://npmjs.org/package/<%=scopedPackageName%>)
 [![Code Coverage][]](https://codecov.io/gh/<%=gitGroup%>/<%=packageNameKebabCase%>)
 
