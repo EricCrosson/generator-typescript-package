@@ -1,16 +1,19 @@
 # generator-typescript-package
-[![License][]](https://opensource.org/licenses/ISC)
-![Build Status](https://github.com/ericcrosson/generator-typescript-package/actions/workflows/ci.yml/badge.svg)
-[![Code Coverage][]](https://codecov.io/gh/ericcrosson/generator-typescript-package)
-[![NPM Package][]](https://npmjs.org/package/generator-typescript-package)
-[![NPM Downloads][]](https://www.npmjs.com/package/generator-typescript-package)
+[![License]](https://opensource.org/licenses/ISC)
+[![Build Status]](https://github.com/EricCrosson/generator-typescript-package/actions/workflows/ci.yml)
+[![NPM Package]](https://npmjs.org/package/generator-typescript-package)
+[![NPM Downloads]](https://www.npmjs.com/package/generator-typescript-package)
+[![Code Coverage]](https://codecov.io/gh/ericcrosson/generator-typescript-package)
+[![semantic-release]](https://github.com/semantic-release/semantic-release)
 
 [License]: https://img.shields.io/badge/License-ISC-blue.svg
-[Code Coverage]: https://codecov.io/gh/ericcrosson/generator-typescript-package/branch/master/graph/badge.svg
+[Build Status]: https://github.com/ericcrosson/generator-typescript-package/actions/workflows/ci.yml/badge.svg
 [NPM Package]: https://img.shields.io/npm/v/generator-typescript-package.svg
 [NPM Downloads]: https://img.shields.io/npm/dt/generator-typescript-package.svg
+[Code Coverage]: https://codecov.io/gh/ericcrosson/generator-typescript-package/branch/master/graph/badge.svg
+[semantic-release]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
 
-> A [yeoman] generator for [TypeScript] packages with best practices
+> An opinionated [yeoman] generator for [TypeScript] packages with best practices
 
 [yeoman]: https://github.com/yeoman
 [TypeScript]: https://www.typescriptlang.org
@@ -20,8 +23,9 @@
 - supports [scoped] npm packages
 - supports [GitHub]
 - supports [gitlab]
-- supports [lerna] mono-repos
+- supports [lerna] monorepos
 - continuous integration ([GitHub Actions]/[gitlab-ci])
+- continuous delivery (with [semantic-release])
 - runs tests in parallel with [ava]
 - property-testing with [fast-check]
 - code coverage ([codecov])
@@ -35,9 +39,10 @@
 [GitHub]: https://github.com
 [gitlab]: https://gitlab.com
 [lerna]: https://github.com/lerna/lerna
+[GitHub Actions]: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs-or-python
+[semantic-release]: https://github.com/semantic-release/semantic-release
 [ava]: https://github.com/avajs/ava
 [fast-check]: https://github.com/dubzzz/fast-check
-[GitHub Actions]: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs-or-python
 [gitlab-ci]: https://docs.gitlab.com/ee/ci/
 [codecov]: https://codecov.io
 [typescript-eslint]: https://github.com/typescript-eslint/typescript-eslint
@@ -50,8 +55,8 @@ npm install -g generator-typescript-package
 
 ## Use
 
-Create a directory for the new package, `cd` inside and generate the
-package skeleton with
+Create a directory for the new package, `cd` inside and generate the package skeleton
+with
 
 ``` shell
 yo typescript-package [--lerna] [--bin]
@@ -66,8 +71,8 @@ Finally, address each `TODO:` statement in the generated project.
 
 > default: false
 
-Generate a package in a [lerna] mono-repo. This package is expected to
-be built with TypeScript 3.0's [build] mode.
+Generate a package in a [lerna] mono-repo. This package is expected to be built with
+TypeScript 3.0's [build] mode.
 
 [lerna]: https://github.com/RyanCavanaugh/learn-a
 [build]: https://devblogs.microsoft.com/typescript/announcing-typescript-3-0/
@@ -88,6 +93,26 @@ Test the generated package
 npm test
 ```
 
-## Configuring Integrations
+## Integrations
 
-Under construction
+### Continuous Integration
+
+GitHub actions runs the `.github/workflows/ci.yml` action on every pull-request against
+the `master`, `alpha`, or `beta` branch.
+
+To configure this behavior, customize the invoked npm run-scripts or the GitHub action
+itself.
+
+### Continuous Delivery
+
+GitHub actions runs the `.github/workflows/release.yml` action on every push to the
+`master`, `alpha`, or `beta` branch.
+
+This action uses the [semantic-release GitHub action] to create a new release and
+publish to npm, which requires the `NPM_TOKEN` [Secret Variable].
+
+Note that pushes to the `alpha` and `beta` branch [create prereleases].
+
+[Secret Variable]: https://docs.github.com/en/actions/security-guides/encrypted-secrets
+[semantic-release GitHub action]: https://github.com/semantic-release/semantic-release/blob/master/docs/recipes/github-actions.md
+[create prereleases]: https://github.com/semantic-release/semantic-release/blob/66cc2b4c7f60d0717ff13110a8c0d3c9f1531f4e/docs/recipes/pre-releases.md#publishing-pre-releases
