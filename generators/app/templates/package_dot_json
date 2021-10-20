@@ -27,8 +27,8 @@
     "lint": "eslint --ext ts . package.json",
     "lint:fix": "eslint --ext ts --fix . package.json",
     "lint-staged": "lint-staged",
-    "prettier": "prettier --list-different src/**/*.ts test/**/*.ts",
-    "prettier:fix": "prettier --write src/**/*.ts test/**/*.ts",
+    "prettier": "prettier --list-different .",
+    "prettier:fix": "prettier --write .",
     "test": "nyc ava",
     "posttest": "npm run docs"
   },
