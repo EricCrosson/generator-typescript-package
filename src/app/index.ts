@@ -189,6 +189,11 @@ module.exports = class extends Generator {
       generateTemplate("dot_editorconfig");
     }
 
+    // There are a few open issues for prettier to respect prettierignore files in a
+    // monorepo root, but for not there is no such behavior.  This means we have to
+    // generate the prettierignore file even in lerna packages.
+    generateTemplate("dot_prettierignore");
+
     generateTemplate("licenses/" + userInput.license.toLowerCase(), "LICENSE");
   }
 

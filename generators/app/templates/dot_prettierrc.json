@@ -1,9 +1,1 @@
-{
-  "tabWidth": 2,
-  "useTabs": false,
-  "semi": false,
-  "singleQuote": true,
-  "bracketSpacing": true,
-  "arrowParens": "always",
-  "trailingComma": "all"
-}
+"@ericcrosson/prettier-config"
