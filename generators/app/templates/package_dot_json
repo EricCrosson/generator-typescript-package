@@ -1,6 +1,6 @@
 {
   "name": "<%= scopedPackageName %>",
-  "version": "<%= version %>",
+  "version": "0.0.0-semantically-released",
   "description": "<%- tagline %>",
   "homepage": "<%= gitRepository %>",
   "bugs": {

@@ -9,7 +9,6 @@ export interface UserInput {
   license: SupportedLicense;
   copyrightHolder: string;
   gitRepository: string;
-  version: string;
   author: string;
   email: string;
 
