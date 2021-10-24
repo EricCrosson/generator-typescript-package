@@ -116,12 +116,6 @@ module.exports = class extends Generator {
       },
       {
         type: "input",
-        name: "version",
-        message: "Initial project version",
-        default: "0.0.1",
-      },
-      {
-        type: "input",
         name: "author",
         message: "Your name",
         default: gitFullName(globalGitConfig()).orDefault(""),
