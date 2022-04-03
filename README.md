@@ -15,6 +15,9 @@
 
 > An opinionated [yeoman] generator for [TypeScript] packages with best practices
 
+NOTE: this project is on life-support, and is subject to change wildly, or not at all. Please
+reach out by opening an issue if you're interested in helping or taking over maintenance of this project!
+
 [yeoman]: https://github.com/yeoman
 [TypeScript]: https://www.typescriptlang.org
 
