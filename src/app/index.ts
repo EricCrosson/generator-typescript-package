@@ -154,7 +154,6 @@ module.exports = class extends Generator {
   }
 
   generateSimpleTemplates(): void {
-    generateTemplate("package_dot_json");
     generateTemplate("README.md");
 
     generateTemplate("src/index.ts", "src/index.ts");
@@ -172,8 +171,10 @@ module.exports = class extends Generator {
     );
 
     if (this.options.lerna) {
+      generateTemplate("lerna/package_dot_json");
       generateTemplate("lerna/tsconfig.json");
     } else {
+      generateTemplate("package_dot_json");
       generateTemplate("tsconfig.json");
       generateTemplate("dot_eslintrc.json");
       generateTemplate("dot_gitignore");
@@ -243,21 +244,6 @@ module.exports = class extends Generator {
         },
       });
     }
-  }
-
-  customizeLernaPackageJson(): void {
-    if (!this.options.lerna) {
-      return;
-    }
-
-    const packagejson = this.destinationPath("package.json");
-
-    this.fs.extendJSON(packagejson, {
-      scripts: {
-        prepublishOnly: "npm run build",
-        build: "tsc --build --incremental --verbose .",
-      },
-    });
   }
 
   install(): void {
