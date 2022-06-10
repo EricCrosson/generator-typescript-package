@@ -117,5 +117,5 @@ publish to npm, which requires the `NPM_TOKEN` [Secret Variable].
 Note that pushes to the `alpha` and `beta` branch [create prereleases].
 
 [Secret Variable]: https://docs.github.com/en/actions/security-guides/encrypted-secrets
-[semantic-release GitHub action]: https://github.com/semantic-release/semantic-release/blob/master/docs/recipes/github-actions.md
+[semantic-release GitHub action]: https://github.com/semantic-release/semantic-release/blob/master/docs/recipes/ci-configurations/github-actions.md
 [create prereleases]: https://github.com/semantic-release/semantic-release/blob/66cc2b4c7f60d0717ff13110a8c0d3c9f1531f4e/docs/recipes/pre-releases.md#publishing-pre-releases
