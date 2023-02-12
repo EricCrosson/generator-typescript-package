@@ -51,7 +51,7 @@
     "parse-git-config": "^3.0.0",
     "parse-github-url": "^1.0.2",
     "purify-ts": "^0.16.1",
-    "yeoman-generator": "^4.12.0"
+    "yeoman-generator": "^5.7.1"
   },
   "devDependencies": {
     "@ericcrosson/eslint-config": "^1.0.6",
